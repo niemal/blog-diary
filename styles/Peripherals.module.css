@@ -1,0 +1,76 @@
+@media screen and (max-width: 926px) {
+    .phoneFix {
+        display: none;
+    }
+    #footer span {
+        margin-left: -20px;
+        padding-right: 10px;
+    }
+    .social img {
+        width: 20px !important;
+        height: 20px !important;
+        padding-left: -20px;
+    }
+}
+#navbar {
+    background-color: rgb(0 128 255);
+    box-shadow: 2px 2px 4px 1px rgba(0,0,0,.2);
+    z-index: 2;
+}
+#navbar:hover img {
+    transition: all 0.5s;
+    filter: invert(78%) sepia(50%) saturate(1025%) hue-rotate(137deg) brightness(107%) contrast(105%);
+}
+#footer {
+    z-index: 2 !important;
+}
+#footer:hover img {
+    transition: all 0.5s;
+    filter: invert(78%) sepia(50%) saturate(1025%) hue-rotate(137deg) brightness(107%) contrast(105%);  
+}
+.social {
+    position: fixed;
+    left: 1em;
+    top: 1em;
+    z-index: 3;
+}
+.social:hover {
+    transition: all 0.5s;
+    filter: invert(78%) sepia(50%) saturate(1025%) hue-rotate(137deg) brightness(107%) contrast(105%);
+}
+#butterfly-2 {
+    position: relative;
+}
+.animation {
+    cursor: pointer;
+    position: relative;
+}
+.animation:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    background: transparent;
+    transition: width .5s ease, background-color .5s ease;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+}
+.animation:hover:after {
+    width: 100%;
+    background: #fff;
+}
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.text-white {
+    color: rgb(230 255 255);
+}
+a.text-white {
+    font-size: 117%;
+}
+a.text-white:hover { 
+    color: rgb(25, 255, 255);
+}

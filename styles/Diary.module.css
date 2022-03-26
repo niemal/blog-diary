@@ -1,0 +1,54 @@
+@media screen and (max-width: 926px) {
+    #contentDiary {
+        margin-top: 100px;
+        width: 90%;
+    }
+}
+.vLine {
+    opacity: 0.7;
+    border-left: 4px dashed rgb(100, 255, 255);
+    height: 8em;
+    margin-left: 50%;
+    position: relative;
+}
+.mark {
+    max-width: 100%;
+}
+.container {
+    flex-basis: 40%;
+}
+#table {
+    left: 50%;
+    width: 10em;
+    padding: 2em;
+    border: 2px solid;
+    background: rgb(55,150,255);
+}
+
+#table td {
+    border: 1px solid rgb(0,150,255);
+    padding: 0.5em;
+}
+.unused {
+    color: rgb(50, 200, 255);
+}
+.today {
+    border: 1px solid rgb(255, 255, 255);
+    color: rgb(100, 255, 255);
+}
+.unused:hover {
+    cursor: not-allowed;
+}
+.future {
+    background-color: rgb(175, 255, 255);
+    color: rgb(100, 200, 255)
+}
+.future:hover {
+    cursor: not-allowed;
+}
+.used:hover {
+    cursor: pointer;
+    background-color: rgb(100, 255, 255);
+    transition: all 0.2s;
+    color: rgb(55,150,255);
+}

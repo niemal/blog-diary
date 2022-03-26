@@ -1,0 +1,71 @@
+@media screen and (max-width: 926px) {
+    #pagination {
+        margin-bottom: 40px;
+    }
+    #search {
+        position: relative !important;
+        width: 150px;
+        margin-bottom: 5px;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0 !important;
+    }
+    #nomatch {
+        width: 90% !important;
+    }
+}
+#footer:hover {
+    opacity: 1 !important;
+    transition: all 0.35s;
+}
+#main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -6%;
+    transition: all 0.4s;
+}
+#nomatch {
+    margin-left: auto;
+    margin-right: auto;
+    width: 33%;
+}
+#goBack {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    border: 1px solid #ffffff;
+}
+#search {
+    position: absolute;
+    left: 70%;
+    background-color: rgb(120, 185, 255);
+    color: rgb(255, 255, 255);
+}
+#search::placeholder {
+    color: rgb(0 128 255);
+}
+#search:focus::placeholder {
+    color: rgb(255, 255, 255);
+}
+#search:focus {
+    background-color: rgb(55,150,255);
+}
+.back {
+    font-size: 2rem;
+    color: rgb(255,255,255);
+    outline: 2px black;
+    padding: 5px;
+}
+.back:hover {
+    cursor: pointer;
+    background-color: rgb(100, 255, 255);
+    transition: all 0.2s;
+    color: rgb(55,150,255);
+}
+#pagination {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 8rem;
+}
