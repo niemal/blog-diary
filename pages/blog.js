@@ -64,6 +64,10 @@ export default function Blog({ data }) {
   const [height, setHeight] = useState(0);
   const [pConfig, setpConfig] = useState({
     pages: 1.8,
+    pagination: {
+      start: 0.2,
+      end: 1.5
+    },
     bfly: 0.5,
     input: 0.5,
     footer: 1.1,
@@ -78,6 +82,10 @@ export default function Blog({ data }) {
     if (window.innerHeight < 900) {
       setpConfig({
         pages: 2.8,
+        pagination: {
+          start: 0.2,
+          end: 2.5
+        },
         bfly: 0.5,
         input: 0.5,
         footer: 2,
@@ -187,9 +195,11 @@ export default function Blog({ data }) {
             
             {tagsElem}
           </ParallaxLayer>
-          
+
           {mainElem}
-          <div id={styles.pagination}>{pagesElem}</div>
+          <ParallaxLayer style={{zIndex: 0, width: `25%`, height: `5%`, marginLeft: 'auto'}} sticky={pConfig.pagination} speed={0.3}>
+            {pagesElem}
+          </ParallaxLayer>
         </div>
 
 
