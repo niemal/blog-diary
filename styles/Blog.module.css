@@ -14,6 +14,34 @@
         width: 90% !important;
     }
 }
+#author {
+    background-color: rgba(0, 128, 255, 0.4);
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
+    box-shadow: 2px 2px 4px 1px rgba(0,0,0,.2);
+    color: #ffffff;
+    padding: 1.15rem;
+    margin-left: 10px;
+}
+#author a {
+    width: 3rem;
+    text-decoration: underline white;
+    display: block;
+    text-underline-offset: 0.1em;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+}
+#author a:hover {
+    transition: all 0.2s;
+    color: rgb(25, 255, 255);
+    text-decoration-color: rgb(25, 255, 255);
+}
+#quote {
+    margin-top: 0.45rem;
+    font-style: italic;
+    opacity: 0.7;
+    transition: all 0.3s;
+}
 #footer:hover {
     opacity: 1 !important;
     transition: all 0.35s;

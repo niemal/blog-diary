@@ -9,12 +9,16 @@ import styles from '../styles/Blog.module.css';
 import { useState, useRef, useEffect } from 'react';
 import { isMobile } from 'react-device-detect';
 import { getBlogPosts } from '../lib/posts';
+import { getAuthor } from '../lib/author';
+import Image from 'next/image';
 
 export async function getStaticProps() {
   const data = getBlogPosts();
+  const author = getAuthor();
   return {
     props: {
-      data
+      data: data,
+      author: author,
     }
   };
 }
@@ -26,7 +30,7 @@ function buildBlocks(data, tags=[]) {
   if (tags.length > 0) {
     data = data.filter((d) => {
       for (let i = 0; i < tags.length; i++) {
-        if (!d[5].includes(tags[i][0]))
+        if (!d.tags.includes(tags[i][0]))
           return false;
       }
       return true;
@@ -39,10 +43,10 @@ function buildBlocks(data, tags=[]) {
   for (let i = 0; i < data.length; i+=3) {
     let page = [];
     for (let y = i; y < i+3 && y < data.length; y++) {
-      page.push(<PostBlock key={data[y][3]} post={data[y]}></PostBlock>);
+      page.push(<PostBlock key={data[y].id} post={data[y]}></PostBlock>);
       
       if (fresh) {
-        data[y][5].forEach((tag) => {
+        data[y].tags.forEach((tag) => {
           let exists = false;
           for (let i = 0; i < tags.length; i++) {
             if (tag === tags[i][0])
@@ -59,11 +63,19 @@ function buildBlocks(data, tags=[]) {
   return [pages, tags];
 };
 
-export default function Home({ data }) {
+export default function Blog({ data, author }) {
   const parallax = useRef();
   const [height, setHeight] = useState(0);
   const [pConfig, setpConfig] = useState({
     pages: 1.8,
+    pagination: {
+      start: 0.2,
+      end: 1.5
+    },
+    author: {
+      start: 0.2,
+      end: 1
+    },
     bfly: 0.5,
     input: 0.5,
     footer: 1.1,
@@ -78,6 +90,14 @@ export default function Home({ data }) {
     if (window.innerHeight < 900) {
       setpConfig({
         pages: 2.8,
+        pagination: {
+          start: 0.2,
+          end: 2.5
+        },
+        author: {
+          start: 0.2,
+          end: 1.1
+        },
         bfly: 0.5,
         input: 0.5,
         footer: 2,
@@ -128,7 +148,7 @@ export default function Home({ data }) {
     console.log('query exists', enabledTags);
     pages = buildBlocks(data.filter((d) => {
         let inp = searchInput.value.toLowerCase();
-        return d[4].toLowerCase().indexOf(inp) > -1 || d[0].toLowerCase().indexOf(inp) > -1;
+        return d.content.toLowerCase().indexOf(inp) > -1 || d.title.toLowerCase().indexOf(inp) > -1;
     }), enabledTags.length > 0 ? enabledTags : [])[0];
 
     if (pages.length > 0) navigate(1, 1, 3, pages);
@@ -175,6 +195,17 @@ export default function Home({ data }) {
           <Butterfly2></Butterfly2>
         </ParallaxLayer>
 
+        <ParallaxLayer style={{width: '25%', left: '3px'}}  sticky={pConfig.author}>
+          <div id={styles.author} className={`rounded`}>
+            <a href={author.homepage} className={`pb-4`}>{author.name}</a>
+            <div style={{width: `50%`, height: `20vh`, backgroundPosition: '50% 50%', backgroundSize: 'cover', backgroundImage: `url('${author.avatar}')`, marginBottom: '10px', borderRadius: '50%', marginLeft: 'auto', marginRight: 'auto'}}></div>
+            <span>{author.about}</span>
+            <a href={author.social.twitter}>Twitter</a>
+            <a href={author.social.github}>Github</a>
+            <span id={styles.quote}>{author.quotes[Math.floor(Math.random() * author.quotes.length)]}</span>
+          </div>
+        </ParallaxLayer>
+
         <div id={styles.main} className="mt-32 mb-8">
           <ParallaxLayer style={{zIndex: 0}} offset={pConfig.input} speed={0.3} >
             <input
@@ -187,9 +218,11 @@ export default function Home({ data }) {
             
             {tagsElem}
           </ParallaxLayer>
-          
+
           {mainElem}
-          <div id={styles.pagination}>{pagesElem}</div>
+          <ParallaxLayer style={{zIndex: 0, width: `25%`, height: `5%`, marginLeft: 'auto'}} sticky={pConfig.pagination} speed={0.3}>
+            {pagesElem}
+          </ParallaxLayer>
         </div>
 
 

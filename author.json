@@ -1,0 +1,16 @@
+{
+    "name": "niemal",
+    "homepage": "/",
+    "avatar": "https://avatars.githubusercontent.com/u/9192165?v=4",
+    "about": "I am a self-taught software engineer! My area of focus at the moment is web-design.",
+    "social": {
+        "twitter": "https://twitter.com/",
+        "github": "https://github.com/niemal/"
+    },
+    "quotes": [
+        "Never judge a book by its cover. - Anonymous",
+        "The unexamined life is not worth living. - Socrates Neither is the over-examined one. - Dr. Yapko",
+        "Success consists of going from failure to failure without loss of enthusiasm. - Winston Churschill",
+        "The greatest lesson in life is to know that even fools are right sometimes. - Winston Churchill"
+    ]
+}
