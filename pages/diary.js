@@ -64,7 +64,7 @@ export default function Diary({ entries, today, todaysEntry }) {
                 else if (entry[2][y][1].length === 0)
                     entryRow.push(<td key={uuid()} className={styles.unused}>{entry[2][y][0]}</td>);
                 else
-                    entryRow.push(<a key={uuid()} href={`#`}><td key={uuid()} onClick={() => clicked(entry[2][y][0], entry[0]+1, entry[1], entry[2][y][1])} className={styles.used}>{entry[2][y][0]}</td></a>);
+                    entryRow.push(<td key={uuid()} onClick={() => clicked(entry[2][y][0], entry[0]+1, entry[1], entry[2][y][1])} className={styles.used}><a key={uuid()} href={`#`}>{entry[2][y][0]}</a></td>);
             }
             entryBody.push(<tr key={uuid()} className="">{entryRow}</tr>);
         }
