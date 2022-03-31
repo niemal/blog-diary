@@ -19,6 +19,11 @@ export default function Post({ postData }) {
                 <div className={`flex items-center`}>
                     <div className={`lg:w-1/2 mx-auto`}>
                         <h1 className="text-5xl lg:text-2xl font-bold text-white mb-2 lg:mb-6">{postData.title}</h1>
+
+                        {postData.banner.length > 0  ? (
+                            <div style={{width: `100%`, height: `40vh`, backgroundPosition: '50% 50%', backgroundSize: 'cover', backgroundImage: `url('${postData.banner}')`}}></div>
+                        ) : '' }
+    
                         <div id={styles.tags} className={`mb-4`}>
                             {postData.tags.map((tag) => (
                                 <a key={tag} href={`/blog`} className={styles.tag}>{tag}</a>

@@ -26,7 +26,7 @@ function buildBlocks(data, tags=[]) {
   if (tags.length > 0) {
     data = data.filter((d) => {
       for (let i = 0; i < tags.length; i++) {
-        if (!d[5].includes(tags[i][0]))
+        if (!d.tags.includes(tags[i][0]))
           return false;
       }
       return true;
@@ -39,10 +39,10 @@ function buildBlocks(data, tags=[]) {
   for (let i = 0; i < data.length; i+=3) {
     let page = [];
     for (let y = i; y < i+3 && y < data.length; y++) {
-      page.push(<PostBlock key={data[y][3]} post={data[y]}></PostBlock>);
+      page.push(<PostBlock key={data[y].id} post={data[y]}></PostBlock>);
       
       if (fresh) {
-        data[y][5].forEach((tag) => {
+        data[y].tags.forEach((tag) => {
           let exists = false;
           for (let i = 0; i < tags.length; i++) {
             if (tag === tags[i][0])
@@ -128,7 +128,7 @@ export default function Blog({ data }) {
     console.log('query exists', enabledTags);
     pages = buildBlocks(data.filter((d) => {
         let inp = searchInput.value.toLowerCase();
-        return d[4].toLowerCase().indexOf(inp) > -1 || d[0].toLowerCase().indexOf(inp) > -1;
+        return d.content.toLowerCase().indexOf(inp) > -1 || d.title.toLowerCase().indexOf(inp) > -1;
     }), enabledTags.length > 0 ? enabledTags : [])[0];
 
     if (pages.length > 0) navigate(1, 1, 3, pages);
