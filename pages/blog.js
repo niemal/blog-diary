@@ -10,7 +10,6 @@ import { useState, useRef, useEffect } from 'react';
 import { isMobile } from 'react-device-detect';
 import { getBlogPosts } from '../lib/posts';
 import { getAuthor } from '../lib/author';
-import Image from 'next/image';
 
 export async function getStaticProps() {
   const data = getBlogPosts();
