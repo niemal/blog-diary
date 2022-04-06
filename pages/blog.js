@@ -68,23 +68,19 @@ export default function Blog({ data, author }) {
   const parallax = useRef();
   const [height, setHeight] = useState(0);
   const [pConfig, setpConfig] = useState({
-    pages: 1.8,
+    pages: 2.1,
     pagination: {
       start: 0.2,
       end: 1.5
     },
-    author: {
+    leftContainer: {
       start: 0.2,
       end: 1
     },
-    sub: {
-      start: 0.4,
-      end: 1,
-    },
     bfly: 0.5,
     input: 0.5,
-    footer: 1.1,
-    footerBfly: 1.1,
+    footer: 1.9,
+    footerBfly: 1.9,
   });
 
 
@@ -99,13 +95,9 @@ export default function Blog({ data, author }) {
           start: 0.2,
           end: 2.5
         },
-        author: {
+        leftContainer: {
           start: 0.2,
           end: 1.1
-        },
-        sub: {
-          start: 0.78,
-          end: 1.7
         },
         bfly: 0.5,
         input: 0.5,
@@ -204,7 +196,7 @@ export default function Blog({ data, author }) {
           <Butterfly2></Butterfly2>
         </ParallaxLayer>
 
-        <ParallaxLayer style={{width: '25%', left: '3px'}}  sticky={pConfig.author}>
+        <ParallaxLayer style={{width: '25%', left: '3px'}}  sticky={pConfig.leftContainer}>
           <div id={styles.author} className={`rounded`}>
             <a href={author.homepage} className={`pb-4`}>{author.name}</a>
             <div style={{width: `50%`, height: `20vh`, backgroundPosition: '50% 50%', backgroundSize: 'cover', backgroundImage: `url('${author.avatar}')`, marginBottom: '10px', borderRadius: '50%', marginLeft: 'auto', marginRight: 'auto'}}></div>
@@ -213,10 +205,10 @@ export default function Blog({ data, author }) {
             <a href={author.social.github}>Github</a>
             <span id={styles.quote}>{author.quotes[Math.floor(Math.random() * author.quotes.length)]}</span>
           </div>
-        </ParallaxLayer>
 
-        <ParallaxLayer style={{width: '25%', left: '3px'}}  sticky={pConfig.sub}>
-          <Sub></Sub>
+          <div className={`mt-4`}>
+            <Sub></Sub>
+          </div>
         </ParallaxLayer>
     
         <div id={styles.main} className="mt-32 mb-8">
@@ -261,9 +253,7 @@ export default function Blog({ data, author }) {
             {tagsElem}
           {mainElem}
           <div id={styles.pagination}>{pagesElem}</div>
-          <div id={styles.sub}>
-            <Sub></Sub>
-          </div>
+          <div className={`mx-auto`} style={{width: '95%', paddingBottom: '3rem'}}><Sub></Sub></div>
         </div>
         <Footer></Footer>
       </div>

@@ -1,5 +1,6 @@
 import Header from '../../components/header';
 import Footer from '../../components/footer';
+import Sub from '../../components/sub';
 import styles from '../../styles/Posts.module.css';
 import Image from 'next/image';
 import { getAllPostIds, getPostData } from '../../lib/posts';
@@ -33,7 +34,8 @@ export default function Post({ postData }) {
                             <Image src="/clock.svg" className={`inline-block`} width={20} height={18} />
                             <span className={`ml-1 font-bold inline-block`}>{postData.time}</span>
                         </div>
-                        <div id={styles.postData} dangerouslySetInnerHTML={{ __html: postData.content}}></div>
+                        <div id={styles.postData} dangerouslySetInnerHTML={{ __html: postData.content }}></div>
+                        <div id={styles.sub} className={`mx-auto`}><Sub></Sub></div>
                     </div>
                 </div>
             </div>

@@ -23,6 +23,13 @@
     #postData ul li {
         margin-top: -30px;
     }
+    #sub {
+        width: 90% !important;
+    }
+}
+#sub {
+    width: 50%;
+    margin-top: 5rem;
 }
 #postData blockquote {
     opacity: 0.8;

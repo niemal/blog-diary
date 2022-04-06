@@ -1,3 +1,35 @@
+@media screen and (max-width: 926px) {
+    #header {
+        font-size: 1.3rem !important;
+        line-height: 1.3rem !important;
+    }
+}
+#subbedMail {
+    padding-top: 5px;
+    padding-bottom: 15px;
+}
+#registered {
+    margin-left: 3rem;
+    font-style: italic;
+}
+#mail {
+    padding-left: 10px;
+    text-decoration: underline white;
+    text-underline-offset: 0.1em;
+    font-weight: bold;
+}
+#invalid {
+    margin-left: 3rem;
+    width: 15rem;
+    padding-left: 10px;
+    text-decoration: underline white;
+    text-underline-offset: 0.1em;
+    font-weight: bold;
+}
+#header {
+    font-size: 1.575rem;
+    line-height: 2rem;
+}
 #block {
     background-color: rgba(0, 128, 255, 0.4);
     text-shadow: 1px 1px 2px rgb(0, 0, 0);
@@ -6,9 +38,30 @@
     padding: 1.15rem;
     margin-left: 10px;
 }
+#buttonContainer {
+    width: 15rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+#buttonContainer button {
+    background-color: rgba(5,150,255, 0.7);
+    margin-left: 2rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+}
+#buttonContainer button:hover {
+    color: rgba(0,0,0, 0.7);
+    background-color: rgb(55,150,255, 1);
+}
+#subbedMail {
+    display: block;
+}
 #search {
-    position: absolute;
-    left: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
     background-color: rgb(120, 185, 255);
     color: rgb(255, 255, 255);
 }
