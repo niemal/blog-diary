@@ -1,0 +1,23 @@
+#block {
+    background-color: rgba(0, 128, 255, 0.4);
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
+    box-shadow: 2px 2px 4px 1px rgba(0,0,0,.2);
+    color: #ffffff;
+    padding: 1.15rem;
+    margin-left: 10px;
+}
+#search {
+    position: absolute;
+    left: 70%;
+    background-color: rgb(120, 185, 255);
+    color: rgb(255, 255, 255);
+}
+#search::placeholder {
+    color: rgb(0 128 255);
+}
+#search:focus::placeholder {
+    color: rgb(255, 255, 255);
+}
+#search:focus {
+    background-color: rgb(55,150,255);
+}

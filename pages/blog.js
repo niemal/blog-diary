@@ -4,6 +4,8 @@ import PostBlock from '../components/post-block';
 import Pagination from '../components/blog-page-nav';
 import Tags from '../components/tags';
 import { Butterfly, Butterfly2 } from '../components/butterfly-background';
+import Sub from '../components/sub';
+
 import { Parallax, ParallaxLayer, IParallax } from '@react-spring/parallax';
 import styles from '../styles/Blog.module.css';
 import { useState, useRef, useEffect } from 'react';
@@ -75,6 +77,10 @@ export default function Blog({ data, author }) {
       start: 0.2,
       end: 1
     },
+    sub: {
+      start: 0.4,
+      end: 1,
+    },
     bfly: 0.5,
     input: 0.5,
     footer: 1.1,
@@ -96,6 +102,10 @@ export default function Blog({ data, author }) {
         author: {
           start: 0.2,
           end: 1.1
+        },
+        sub: {
+          start: 0.78,
+          end: 1.7
         },
         bfly: 0.5,
         input: 0.5,
@@ -205,6 +215,10 @@ export default function Blog({ data, author }) {
           </div>
         </ParallaxLayer>
 
+        <ParallaxLayer style={{width: '25%', left: '3px'}}  sticky={pConfig.sub}>
+          <Sub></Sub>
+        </ParallaxLayer>
+    
         <div id={styles.main} className="mt-32 mb-8">
           <ParallaxLayer style={{zIndex: 0}} offset={pConfig.input} speed={0.3} >
             <input
@@ -247,6 +261,9 @@ export default function Blog({ data, author }) {
             {tagsElem}
           {mainElem}
           <div id={styles.pagination}>{pagesElem}</div>
+          <div id={styles.sub}>
+            <Sub></Sub>
+          </div>
         </div>
         <Footer></Footer>
       </div>
