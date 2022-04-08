@@ -2,20 +2,26 @@ import Header from '../../components/header';
 import Footer from '../../components/footer';
 import Sub from '../../components/sub';
 import styles from '../../styles/Posts.module.css';
-import Image from 'next/image';
-import { getAllPostIds, getPostData } from '../../lib/posts';
 
-export default function Post({ postData }) {
+import Image from 'next/image';
+//import Script from 'next/script';
+
+import { getAllPostIds, getPostData } from '../../lib/posts';
+//import { useState } from 'react';
+
+export default function Post({ postData, siteUrl }) {
     postData.content = postData.content.replaceAll('<p', `<p class="paragraph text-md lg:text-xl font-light text-white mb-4 mt-2" `);
     postData.content = postData.content.replaceAll('<h1', `<h1 class="text-xl lg:text-5xl font-bold text-white mb-2 lg:mb-6 pt-3" `);
     postData.content = postData.content.replaceAll('<h2', `<h2 class="text-xl lg:text-3xl font-bold text-white mb-2 lg:mb-6 pt-3" `);
     postData.content = postData.content.replaceAll('<ol', `<ol class="text-md lg:text-xl font-light text-white lg:mb-3 mt-2" `);
     postData.content = postData.content.replaceAll('<li', `<li class="pl-2" `);
     postData.content = postData.content.replaceAll('<ul', `<ul class="text-md lg:text-xl font-light text-white lg:mb-3 mt-2" `);
+    postData.content = postData.content.replaceAll('<code', `<pre class="${styles.preCode}"><code class="hljs"`);
 
     return (
         <div id="main">
-            <Header></Header>
+            <Header title={postData.title}>
+            </Header>
             <div id={styles.content} className="mt-1-2 lg:mt-28 mx-auto mb-28">
                 <div className={`flex items-center`}>
                     <div className={`lg:w-1/2 mx-auto`}>
@@ -35,7 +41,7 @@ export default function Post({ postData }) {
                             <span className={`ml-1 font-bold inline-block`}>{postData.time}</span>
                         </div>
                         <div id={styles.postData} dangerouslySetInnerHTML={{ __html: postData.content }}></div>
-                        <div id={styles.sub} className={`mx-auto`}><Sub></Sub></div>
+                        <div id={styles.sub} className={`mx-auto`}><Sub siteUrl={siteUrl}></Sub></div>
                     </div>
                 </div>
             </div>
@@ -53,10 +59,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-    const postData = getPostData(params.id);
+    const data = getPostData(params.id);
     return {
         props: {
-            postData
+            postData: data.post,
+            siteUrl: data.siteUrl
         }
     }
 }

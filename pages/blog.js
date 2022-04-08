@@ -6,7 +6,7 @@ import Tags from '../components/tags';
 import { Butterfly, Butterfly2 } from '../components/butterfly-background';
 import Sub from '../components/sub';
 
-import { Parallax, ParallaxLayer, IParallax } from '@react-spring/parallax';
+import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import styles from '../styles/Blog.module.css';
 import { useState, useRef, useEffect } from 'react';
 import { isMobile } from 'react-device-detect';
@@ -18,8 +18,9 @@ export async function getStaticProps() {
   const author = getAuthor();
   return {
     props: {
-      data: data,
+      data: data.posts,
       author: author,
+      siteUrl: data.siteUrl
     }
   };
 }
@@ -64,7 +65,7 @@ function buildBlocks(data, tags=[]) {
   return [pages, tags];
 };
 
-export default function Blog({ data, author }) {
+export default function Blog({ data, author, siteUrl }) {
   const parallax = useRef();
   const [height, setHeight] = useState(0);
   const [pConfig, setpConfig] = useState({
@@ -207,7 +208,7 @@ export default function Blog({ data, author }) {
           </div>
 
           <div className={`mt-4`}>
-            <Sub></Sub>
+            <Sub siteUrl={siteUrl}></Sub>
           </div>
         </ParallaxLayer>
     
@@ -253,7 +254,7 @@ export default function Blog({ data, author }) {
             {tagsElem}
           {mainElem}
           <div id={styles.pagination}>{pagesElem}</div>
-          <div className={`mx-auto`} style={{width: '95%', paddingBottom: '3rem'}}><Sub></Sub></div>
+          <div className={`mx-auto`} style={{width: '95%', paddingBottom: '3rem'}}><Sub siteUrl={siteUrl}></Sub></div>
         </div>
         <Footer></Footer>
       </div>

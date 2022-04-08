@@ -3,11 +3,11 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Peripherals.module.css';
 
-function Header() {
+function Header({ title = "Welcome to niemalground" }) {
     return (
         <div>
             <Head>
-                <title>Welcome to niemalground!</title>
+                <title>{title}</title>
                 <meta name="description" content="Generated with ❤️" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>

@@ -27,6 +27,9 @@
         width: 90% !important;
     }
 }
+.preCode code {
+    margin-top: 2rem;
+}
 #sub {
     width: 50%;
     margin-top: 5rem;

@@ -3,7 +3,7 @@ import uuid from 'uuid';
 import { useState } from 'react';
 import { animated, useTransition } from 'react-spring';
 
-export default function Sub() {
+export default function Sub({ siteUrl }) {
     let props = {
         from: { opacity: 0, transform: 'scaleX(0)' },
         enter: { opacity: 0.8, transform: 'scaleX(1)' }
@@ -15,7 +15,7 @@ export default function Sub() {
     const [subbedMail, setSubbedMail] = useState(null);
 
     const getSub = async () => {
-        const res = await fetch(`/api/getsub`, { method: 'GET' });
+        const res = await fetch(`${siteUrl}/api/getsub`, { method: 'GET' });
         const result = await res.json();
         if (result.error) {
             console.log('Error: ', result.error);
@@ -42,11 +42,14 @@ export default function Sub() {
         }
 
         setLoading('block');
-        const res = await fetch(`/api/sub/${mail}`, { method: 'GET' });
+        const res = await fetch(`${siteUrl}/api/sub/${mail}`, { method: 'GET' });
         const result = await res.json();
         if (result.invalid) {
             setSubbedMail('');
             setInvalid('E-mail is invalid.');
+        } else if (result.exists) {
+            setSubbedMail('');
+            setInvalid('E-mail exists already.');
         } else {
             setSubbedMail(result.mail);
         }
@@ -55,7 +58,7 @@ export default function Sub() {
     const unsub = async () => {
         setInvalid('');
         setLoading('block');
-        const res = await fetch(`/api/unsub`, { method: 'GET' });
+        const res = await fetch(`${siteUrl}/api/unsub`, { method: 'GET' });
         const result = await res.json();
         setSubbedMail('none');
         setLoading('none');

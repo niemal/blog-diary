@@ -17,10 +17,10 @@ export default function About({ author }) {
         <div>
             <Header></Header>
             <div id="main">
-            <div id="content" className="w-1/2 mt-1-2 lg:mt-28 mx-auto">
-                <div className="lg:flex items-center">
+            <div id="content" style={{textAlign: 'center'}} className="w-1/2 mt-1-2 lg:mt-28 mx-auto">
+                <div id={styles.wrapper} className="lg:flex items-center">
                     <div id={styles.author} className={`block rounded`}>
-                        <h1 className={`mx-auto text-5xl lg:text-6xl font-bold text-white mb-2 lg:mb-6`}><a href={author.homepage} className={`pb-4`}>{author.name}</a></h1>
+                        <h1 className={`text-5xl lg:text-6xl font-bold text-white mb-2 lg:mb-6`}><a href={author.homepage} className={`pb-4`}>{author.name}</a></h1>
                         <p className="text-md lg:text-xl font-light text-white mb-6">
                             <div style={{width: `10rem`, height: `20vh`, backgroundPosition: '50% 50%', backgroundSize: 'cover', backgroundImage: `url('${author.avatar}')`, marginBottom: '10px', borderRadius: '50%', marginLeft: 'auto', marginRight: 'auto'}}></div>
                             <span>{author.about}</span>
