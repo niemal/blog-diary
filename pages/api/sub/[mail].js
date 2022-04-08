@@ -1,5 +1,11 @@
 import { subscribe, generateFingerprint } from '../../../lib/db.js';
 
+export const config = {
+    api: {
+      externalResolver: true,
+    },
+};
+
 export default function handler(req, res) {
     const { mail } = req.query;
 

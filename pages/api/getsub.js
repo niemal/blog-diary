@@ -1,5 +1,11 @@
 import { generateFingerprint, getSubbedMail } from '../../lib/db.js';
 
+export const config = {
+    api: {
+      externalResolver: true,
+    },
+};
+
 export default function handler(req, res) {
     getSubbedMail(generateFingerprint(res.socket.remoteAddress), (err, mail) => {
         if (err) {
