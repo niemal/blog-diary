@@ -1,8 +1,7 @@
 {
-    "siteUrl": "localhost:3000",
+    "siteUrl": "http://localhost:3000",
     "service": "gmail",
     "auth": {
-        "user": "your_email_address@gmail.com",
-        "pass": "your_password"
+        "user": "niemallamein@gmail.com"
     }
 }

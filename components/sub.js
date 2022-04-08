@@ -12,7 +12,23 @@ export default function Sub() {
     const [loading, setLoading] = useState('none');
     const [mail, setMail] = useState('');
     const [invalid, setInvalid] = useState('');
-    const [subbedMail, setSubbedMail] = useState('');
+    const [subbedMail, setSubbedMail] = useState(null);
+
+    const getSub = async () => {
+        const res = await fetch(`/api/getsub`, { method: 'GET' });
+        const result = await res.json();
+        if (result.error) {
+            console.log('Error: ', result.error);
+            setSubbedMail('');
+        } else {
+            setSubbedMail(result.mail);
+        }
+    };
+
+    if (subbedMail === null) {
+        getSub();
+    }
+    
     const transition = useTransition(
         loading,
         props
@@ -49,7 +65,8 @@ export default function Sub() {
         <>
             {transition((props, whatever) => (
                 <animated.div id={styles.block} style={props} className={`rounded`}>
-                    <h1 id={styles.header} className={`w-10/12 font-bold text-white mb-2 lg:mb-4 mx-auto`}>Subscribe for new posts</h1>
+                    <h1 className={`${styles.header} ${subbedMail === '' || subbedMail === 'none' ? 'visible' : 'hidden'} w-10/12 font-bold text-white mb-2 lg:mb-4 mx-auto`}>{subbedMail === '' || subbedMail === 'none' ? 'Subscribe for new posts' : 'Subscribed!'}</h1>
+                    <h1 className={`${styles.header} ${subbedMail === '' || subbedMail === 'none' ? 'hidden' : 'visible'} w-1/3 font-bold text-white mb-2 lg:mb-4 mx-auto`}>Subscribed!</h1>
                     <div className={`mx-auto`} style={{display: loading, width: `3.8rem`, height: `4rem`, backgroundPosition: '100% 50%', backgroundSize: 'auto', backgroundImage: `url('/_next/image?url=%2Floading.gif&w=1920&q=100')`, marginBottom: '10px'}}></div>
                     <div id={styles.subbedMail}>
                         <span id={styles.registered} className={subbedMail === '' ? 'hidden' : 'visible'}>Registered e-mail:</span>
@@ -58,14 +75,15 @@ export default function Sub() {
                     </div>
                     <input
                         type="email"
-                        className={`form-control block w-1/6 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
+                        className={`${subbedMail === '' || subbedMail === 'none' ? 'visible' : 'hidden'} form-control block w-1/6 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
                         id={styles.search}
                         placeholder="E-mail.."
                         value={mail}
                         onChange={(e) => { setMail(e.target.value); }}
+                        onKeyUp={(e) => { if (e.key === 'Enter') { sub(); }}}
                     />
                     <div id={styles.buttonContainer} className={`mx-auto`}>
-                        <button key={uuid()} className={`px-6 text-white font-medium leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out`} type={`button`} onClick={() => sub()}>
+                        <button key={uuid()} className={`${subbedMail === '' || subbedMail === 'none' ? 'visible' : 'hidden'} px-6 text-white font-medium leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out`} type={`button`} onClick={() => sub()}>
                         sub
                         </button>
                         <button key={uuid()} className={`px-6 text-white font-medium leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out`} type={`button`} onClick={() => unsub()}>
