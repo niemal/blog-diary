@@ -2,22 +2,10 @@ import Header from '../../components/header';
 import Footer from '../../components/footer';
 import Sub from '../../components/sub';
 import styles from '../../styles/Posts.module.css';
-
 import Image from 'next/image';
-//import Script from 'next/script';
-
 import { getAllPostIds, getPostData } from '../../lib/posts';
-//import { useState } from 'react';
 
 export default function Post({ postData, siteUrl }) {
-    postData.content = postData.content.replaceAll('<p', `<p class="paragraph text-md lg:text-xl font-light text-white mb-4 mt-2" `);
-    postData.content = postData.content.replaceAll('<h1', `<h1 class="text-xl lg:text-5xl font-bold text-white mb-2 lg:mb-6 pt-3" `);
-    postData.content = postData.content.replaceAll('<h2', `<h2 class="text-xl lg:text-3xl font-bold text-white mb-2 lg:mb-6 pt-3" `);
-    postData.content = postData.content.replaceAll('<ol', `<ol class="text-md lg:text-xl font-light text-white lg:mb-3 mt-2" `);
-    postData.content = postData.content.replaceAll('<li', `<li class="pl-2" `);
-    postData.content = postData.content.replaceAll('<ul', `<ul class="text-md lg:text-xl font-light text-white lg:mb-3 mt-2" `);
-    postData.content = postData.content.replaceAll('<code', `<pre class="${styles.preCode}"><code class="hljs"`);
-
     return (
         <div id="main">
             <Header title={postData.title}>
