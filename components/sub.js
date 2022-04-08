@@ -89,7 +89,7 @@ export default function Sub({ siteUrl }) {
                         <button key={uuid()} className={`${subbedMail === '' || subbedMail === 'none' ? 'visible' : 'hidden'} px-6 text-white font-medium leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out`} type={`button`} onClick={() => sub()}>
                         sub
                         </button>
-                        <button key={uuid()} className={`px-6 text-white font-medium leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out`} type={`button`} onClick={() => unsub()}>
+                        <button key={uuid()} className={`${subbedMail === '' || subbedMail === 'none' ? 'hidden' : 'visible'} px-6 text-white font-medium leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out`} type={`button`} onClick={() => unsub()}>
                         unsub
                         </button>
                     </div>
