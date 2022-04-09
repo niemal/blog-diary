@@ -10,10 +10,10 @@ export default function Post({ postData, siteUrl }) {
         <div id="main">
             <Header title={postData.title}>
             </Header>
-            <div id={styles.content} className="mt-1-2 lg:mt-28 mx-auto mb-28">
+            <div id={styles.content} className="lg:mt-20 mx-auto mb-10">
                 <div className={`flex items-center`}>
                     <div className={`lg:w-1/2 mx-auto`}>
-                        <h1 style={{textAlign: 'center'}} className={`text-3xl lg:text-5xl font-bold text-white mb-2 mt-10 lg:mb-6 pt-3`}>{postData.title}</h1>
+                        <h1 style={{textAlign: 'center'}} className={`text-3xl lg:text-5xl font-bold text-white mb-2 lg:mb-6 pt-3`}>{postData.title}</h1>
 
                         {postData.banner.length > 0  ? (
                             <div style={{width: `100%`, height: `40vh`, backgroundPosition: '50% 50%', backgroundSize: 'cover', backgroundImage: `url('${postData.banner}')`}}></div>
