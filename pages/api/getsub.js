@@ -7,7 +7,10 @@ export const config = {
 };
 
 export default function handler(req, res) {
-    getSubbedMail(generateFingerprint(res.socket.remoteAddress), (err, mail) => {
+    let headers = req.rawHeaders.map((h) => h.toLowerCase());
+    let userAgent = headers[headers.indexOf('user-agent')+1];
+
+    getSubbedMail(generateFingerprint(userAgent + res.socket.remoteAddress), (err, mail) => {
         if (err) {
             res.status(200).json({ error: err });
         } else {
