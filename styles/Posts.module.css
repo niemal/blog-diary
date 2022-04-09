@@ -36,11 +36,17 @@
 }
 #postData blockquote {
     opacity: 0.8;
-    border: 1px solid rgb(125, 255, 255);
+    border: 3px solid rgb(125, 255, 255);
     border-radius: 10px;
     box-shadow: 1px 1px 2px rgb(0, 0, 0);
-    padding: 0rem 2rem 0rem 2rem;
+    padding: 1rem;
     font-style: italic;
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+#postData blockquote em, #postData blockquote strong {
+    display: block;
+    text-align: right;
 }
 #postData img {
     margin-left: auto;
