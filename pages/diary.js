@@ -5,33 +5,65 @@ import styles from '../styles/Diary.module.css';
 import Image from 'next/image';
 import { useState } from 'react';
 import { animated, useTransition } from 'react-spring';
-import { getDiaryEntries } from '../lib/diary_util';
+import { diaryEntries, allowed } from '../lib/diary_util';
 
-export async function getStaticProps() {
-  const data = getDiaryEntries();
-  return {
-    props: {
-      entries: data.entries,
-      today: data.today,
-      todaysEntry: data.todaysEntry
+export async function getServerSideProps(context) {
+    for (let ip of allowed) {
+        if (context.res.socket.remoteAddress.indexOf(ip) > -1) {
+            return {
+              props: {
+                entries: diaryEntries.entries,
+                today: diaryEntries.today,
+                todaysEntry: diaryEntries.todaysEntry
+              }
+            };
+        }
     }
-  };
+
+    return {
+        props: {
+            entries: []
+        }
+    }
 }
 
 export default function Diary({ entries, today, todaysEntry }) {
-    let diaryLayouts = [];
-
-    let [entryContent, setEntryContent] = useState([]);
-    let [headerContent, setHeaderContent] = useState('');
-
     let props = {
         from: { opacity: 0, transform: 'scaleY(0)', },
         enter: { opacity: 1, transform: 'scaleY(1)', },
         trail: 100,
     };
-    
-    let transitionHeader = useTransition(headerContent, props);
+    let transitionHeader;
+
+    if (entries.length === 0) {
+        transitionHeader = useTransition(null, props);
+        return (
+            <div>
+                <Header></Header>
+                <div id="main" className={styles.main}>
+                    <div id={styles.contentDiary} className="w-1/2 lg:mt-28 mx-auto">
+                        <div className="lg:flex items-center">
+                            <div className="block mx-auto">
+                                {transitionHeader((props, h) =>
+                                    <animated.h1 style={props} className="mx-auto text-3xl lg:text-4xl font-bold text-white mb-2 lg:mb-6">
+                                        Sorry, this content is currently private.
+                                    </animated.h1>)}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <Footer></Footer>
+            </div>
+        );
+    }
+
+    let diaryLayouts = [];
+
+    let [entryContent, setEntryContent] = useState([]);
+    let [headerContent, setHeaderContent] = useState('');
+
     let transitionContent = useTransition(entryContent, props);
+    transitionHeader = useTransition(headerContent, props);
 
     const clicked = (day, month, year, content) => {
         setHeaderContent(`${day}/${month}/${year}`);
