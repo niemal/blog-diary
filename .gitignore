@@ -37,3 +37,6 @@ yarn-error.log*
 # database
 blog.db
 blog.db-journal
+
+# config
+config.json
