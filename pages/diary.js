@@ -33,10 +33,13 @@ export default function Diary({ entries, today, todaysEntry }) {
         enter: { opacity: 1, transform: 'scaleY(1)', },
         trail: 100,
     };
-    let transitionHeader;
+    let [entryContent, setEntryContent] = useState([]);
+    let [headerContent, setHeaderContent] = useState('');
+
+    let transitionContent = useTransition(entryContent, props);
+    let transitionHeader = useTransition(headerContent, props);
 
     if (entries.length === 0) {
-        transitionHeader = useTransition(null, props);
         return (
             <div>
                 <Header></Header>
@@ -58,12 +61,6 @@ export default function Diary({ entries, today, todaysEntry }) {
     }
 
     let diaryLayouts = [];
-
-    let [entryContent, setEntryContent] = useState([]);
-    let [headerContent, setHeaderContent] = useState('');
-
-    let transitionContent = useTransition(entryContent, props);
-    transitionHeader = useTransition(headerContent, props);
 
     const clicked = (day, month, year, content) => {
         setHeaderContent(`${day}/${month}/${year}`);
@@ -124,8 +121,8 @@ export default function Diary({ entries, today, todaysEntry }) {
                             {transitionHeader((props, h) => <animated.h1 style={props} className="mx-auto text-3xl lg:text-4xl font-bold text-white mb-2 lg:mb-6">{h}</animated.h1>)}
                             {transitionContent((props, c) => (
                                 <animated.p style={props} className={`${styles.container} flex justify-center mt-6 text-md lg:text-xl font-light text-white mb-6`}>
-                                {c[1] === 'check' ? <Image src={`/check-mark.png`} className={styles.mark} width={30} height={30} /> : ''}
-                                {c[1] === 'cancel' ? <Image src={`/cancel.png`} className={styles.mark} width={30} height={30} /> : ''}
+                                {c[1] === 'check' ? <Image src={`/check-mark.png`} alt={''} className={styles.mark} width={30} height={30} /> : ''}
+                                {c[1] === 'cancel' ? <Image src={`/cancel.png`} alt={''} className={styles.mark} width={30} height={30} /> : ''}
                                 <span className={`pl-2`}>{c[0]}</span>
                                 </animated.p>
                             ))}
