@@ -50,6 +50,21 @@
   src: url(https://fonts.gstatic.com/s/ubuntu/v19/4iCs6KVjbNBYlgoKfw72.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+::-webkit-scrollbar {
+  width: 0.7rem;
+  opacity: 0.7;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 1px 1px 5px grey;
+  border-radius: 1rem;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(0, 138, 255);
+  border-radius: 1rem;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(0, 100, 255);
+}
 html {
   font-family: 'Ubuntu' !important;
 }
