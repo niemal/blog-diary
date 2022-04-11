@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 3310",
+    "start": "./clean_tests.sh && next start -p 3310",
     "lint": "next lint"
   },
   "dependencies": {
