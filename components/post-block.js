@@ -30,7 +30,7 @@ function PostBlock({ post }) {
             {transition((props, whatever) => (
                 <animated.a key={uuid()} href={`/posts/${post.id}`} style={props} className={`w-1/4 items-center ${pb["blog-block"]} mx-auto mb-8`}>
                     <div id={pb.container} className={`block mx-auto mt-4 ml-8 mr-8`}>
-                        <h1 className="text-2xl lg:text-3xl font-bold text-white mb-2 lg:mb-4 mx-auto">{post.title}</h1>
+                        <h1 className={`text-2xl lg:text-3xl font-bold text-white mb-2 lg:mb-4 mx-auto ${pb.title}`}>{post.title}</h1>
                         
                         {post.banner.length > 0  ? (
                             <div style={{width: `100%`, height: `20vh`, backgroundPosition: '50% 50%', backgroundSize: 'cover', backgroundImage: `url('${post.banner}')`, marginBottom: '10px'}}></div>

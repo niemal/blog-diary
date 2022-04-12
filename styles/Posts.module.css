@@ -26,6 +26,12 @@
     #sub {
         width: 90% !important;
     }
+    .code {
+        width: 84vw;
+    }
+}
+.code {
+    overflow: auto;
 }
 .preCode code {
     margin-top: 2rem;

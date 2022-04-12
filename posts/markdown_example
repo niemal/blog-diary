@@ -3,7 +3,7 @@ banner:bfly.jpg
 Marked - Markdown Parser
 ========================
 
-[Marked] lets you convert [Markdown] into HTML.  Markdown is a simple text format whose goal is to be very easy to read and write, even when not converted to HTML.  This demo page will let you type anything you like and see how it gets converted.  **Live.**  No more waiting around.
+[Marked] lets you convert [Markdown] into HTML.  Markdown is a simple text format whose goal is to be very easy to read and write, even when not `converted` to HTML.  This demo page will let you type anything you like and see how it gets converted.  **Live.**  No more waiting around.
 
 ![image](https://www.svgrepo.com/show/409834/happy-emoji.svg "title")
 
@@ -13,7 +13,7 @@ How To Use The Demo
 1. Type in stuff on the left.
 2. See the live updates on the right.
 
-That's it.  Pretty simple.  There's also a drop-down option in the upper right to switch between various views:
+That's it.  Pretty simple.  There's also a `drop-down` option in the upper right to switch between various views:
 
 - **Preview:**  A live display of the generated HTML as it would render in a browser.
 - **HTML Source:**  The generated HTML before your browser makes it pretty.
@@ -50,7 +50,7 @@ function test() {
 <html>
     <body>
         <code>this is a test</code>
-        <p class="waaa">yeaaah</p>
+        <p class="waaa">yeaaah</p><code>this is a test</code><code>this is a test</code><code>this is a test</code><code>this is a test</code><code>this is a test</code><code>this is a test</code><code>this is a test</code>
     </body>
 </html>
 ```
