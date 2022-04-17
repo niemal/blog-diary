@@ -195,6 +195,7 @@ export default function Blog({ data, author, siteUrl }) {
         url={siteUrl}
         desc={author.about}
         imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
+        social={author.social}
         >
         </Header>
         <ParallaxLayer style={{zIndex: 0}} offset={pConfig.bfly} speed={0.5}>
@@ -250,6 +251,7 @@ export default function Blog({ data, author, siteUrl }) {
         url={siteUrl}
         desc={author.about}
         imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
+        social={author.social}
         >
         </Header>
         <div id={styles.main} className="mt-32 mb-8">

@@ -7,26 +7,34 @@ function Header({
     title = "Welcome to niemalground!",
     url = "",
     desc = "",
-    imageUrl = ""
+    imageUrl = "",
+    social
     }) {
 
     return (
         <div>
             <Head>
                 <title>{title}</title>
-                <meta name="description" content="Generated with ❤️" />
+                <meta name="author" content="niemal" />
+                <meta name="application-name" content="blog-diary" />
+                <meta name="description" content={desc} />
                 <link rel="icon" href="/favicon.ico" />
-
+                
                 <meta property="og:type" content="website" />
+                <meta property="og:locale" content="en_US" />
                 <meta property="og:url" content={url} />
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={desc} />
                 <meta property="og:image" content={imageUrl} />
+                <meta name="twitter:card" content="summary" />
+                <meta name="twitter:title" content={title} />
+                <meta name="twitter:description" content={desc} />
+                <meta name="twitter:image" content={imageUrl} />
             </Head>
             <header>
                 <div id={styles.social} className="mt-6">
-                    <a className={`${styles.social}`} href="https://twitter.com/niemal/"><Image src="/twitter.svg" alt={''} width={30} height={30} /></a>
-                    <a className={`${styles.social} ml-8`} href="https://github.com/niemal/"><Image src="/github.svg" alt={''} width={30} height={30} /></a>
+                    <a className={`${styles.social}`} href={social.twitter}><Image src="/twitter.svg" alt={''} width={30} height={30} /></a>
+                    <a className={`${styles.social} ml-8`} href={social.github}><Image src="/github.svg" alt={''} width={30} height={30} /></a>
                 </div>
                 <nav id={`${styles.navbar}`} className={`flex justify-center items-center p-1 mx-auto ${styles.sticky}`}>
                     <Link href="/blog"><a className={`inline-block ${styles["animation"]} mt-4 ${styles["text-white"]} flex lg:mt-0 mr-4`}>blog</a></Link>

@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { animated, useTransition } from 'react-spring';
 import { diaryEntries, allowed } from '../lib/diary_util';
-import { config } from '../lib/author';
+import { config, author } from '../lib/author';
 
 export async function getServerSideProps(context) {
     for (let ip of allowed) {
@@ -16,7 +16,8 @@ export async function getServerSideProps(context) {
                 entries: diaryEntries.entries,
                 today: diaryEntries.today,
                 todaysEntry: diaryEntries.todaysEntry,
-                siteUrl: config.siteUrl
+                siteUrl: config.siteUrl,
+                author: author
               }
             };
         }
@@ -25,12 +26,13 @@ export async function getServerSideProps(context) {
     return {
         props: {
             entries: [],
-            siteUrl: config.siteUrl
+            siteUrl: config.siteUrl,
+            author: author
         }
     }
 }
 
-export default function Diary({ entries, today, todaysEntry, siteUrl }) {
+export default function Diary({ entries, today, todaysEntry, siteUrl, author }) {
     let props = {
         from: { opacity: 0, transform: 'scaleY(0)', },
         enter: { opacity: 1, transform: 'scaleY(1)', },
@@ -49,6 +51,7 @@ export default function Diary({ entries, today, todaysEntry, siteUrl }) {
                 url={siteUrl}
                 desc={"My own personal diary."}
                 imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
+                social={author.social}
                 >
                 </Header>
                 <div id="main" className={styles.main}>
@@ -58,7 +61,8 @@ export default function Diary({ entries, today, todaysEntry, siteUrl }) {
                                 {transitionHeader((props, h) =>
                                     <animated.h1 style={props} className="mx-auto text-3xl lg:text-4xl font-bold text-white mb-2 lg:mb-6">
                                         Sorry, this content is currently private.
-                                    </animated.h1>)}
+                                    </animated.h1>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -125,6 +129,7 @@ export default function Diary({ entries, today, todaysEntry, siteUrl }) {
             url={siteUrl}
             desc={"My own personal diary."}
             imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
+            social={author.social}
             >
             </Header>
             <div id="main">

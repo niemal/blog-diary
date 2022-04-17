@@ -5,6 +5,7 @@ import styles from '../../styles/Posts.module.css';
 import Image from 'next/image';
 import { getAllPostIds, getPostData } from '../../lib/posts';
 import { animated, useTransition } from 'react-spring';
+import { author } from '../../lib/author';
 
 export async function getStaticPaths() {
     const paths = getAllPostIds();
@@ -19,12 +20,13 @@ export async function getStaticProps({ params }) {
     return {
         props: {
             postData: data.post,
-            siteUrl: data.siteUrl
+            siteUrl: data.siteUrl,
+            author: author
         }
     }
 }
 
-export default function Post({ postData, siteUrl }) {
+export default function Post({ postData, siteUrl, author }) {
     let props = {
         from: { opacity: 0, transform: 'scaleY(0)', x: -1000 },
         enter: { opacity: 1, transform: 'scaleY(1)', x: 0 },
@@ -37,6 +39,7 @@ export default function Post({ postData, siteUrl }) {
             url={siteUrl}
             desc={postData.desc}
             imageUrl={postData.banner}
+            social={author.social}
             >
             </Header>
             {transition((props, _) => (
