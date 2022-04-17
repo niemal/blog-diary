@@ -1,21 +1,26 @@
 import Header from '../components/header';
 import Footer from '../components/footer';
 import styles from '../styles/About.module.css';
-import { getAuthor } from '../lib/author';
+import { author, config } from '../lib/author';
 
 export async function getStaticProps() {
-  const author = getAuthor();
   return {
     props: {
       author: author,
+      siteUrl: config.siteUrl
     }
   };
 }
 
-export default function About({ author }) {
+export default function About({ author, siteUrl }) {
     return (
         <div>
-            <Header></Header>
+            <Header
+            url={siteUrl}
+            desc={author.about}
+            imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
+            >
+            </Header>
             <div id="main">
             <div id="content" style={{textAlign: 'center'}} className="w-1/2 mt-1-2 lg:mt-28 mx-auto">
                 <div id={styles.wrapper} className="lg:flex items-center">

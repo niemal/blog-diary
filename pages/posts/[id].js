@@ -6,6 +6,24 @@ import Image from 'next/image';
 import { getAllPostIds, getPostData } from '../../lib/posts';
 import { animated, useTransition } from 'react-spring';
 
+export async function getStaticPaths() {
+    const paths = getAllPostIds();
+    return {
+        paths,
+        fallback: false
+    }
+}
+
+export async function getStaticProps({ params }) {
+    const data = getPostData(params.id);
+    return {
+        props: {
+            postData: data.post,
+            siteUrl: data.siteUrl
+        }
+    }
+}
+
 export default function Post({ postData, siteUrl }) {
     let props = {
         from: { opacity: 0, transform: 'scaleY(0)', x: -1000 },
@@ -14,7 +32,12 @@ export default function Post({ postData, siteUrl }) {
     let transition = useTransition(null, props);
     return (
         <div id="main">
-            <Header title={postData.title}>
+            <Header
+            title={postData.title}
+            url={siteUrl}
+            desc={postData.desc}
+            imageUrl={postData.banner}
+            >
             </Header>
             {transition((props, _) => (
             <animated.div style={props} id={styles.content} className="lg:mt-20 mx-auto mb-10">
@@ -44,22 +67,4 @@ export default function Post({ postData, siteUrl }) {
             <Footer></Footer>
         </div>
     );
-}
-
-export async function getStaticPaths() {
-    const paths = getAllPostIds();
-    return {
-        paths,
-        fallback: false
-    }
-}
-
-export async function getStaticProps({ params }) {
-    const data = getPostData(params.id);
-    return {
-        props: {
-            postData: data.post,
-            siteUrl: data.siteUrl
-        }
-    }
 }

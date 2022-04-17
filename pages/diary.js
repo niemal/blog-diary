@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { animated, useTransition } from 'react-spring';
 import { diaryEntries, allowed } from '../lib/diary_util';
+import { config } from '../lib/author';
 
 export async function getServerSideProps(context) {
     for (let ip of allowed) {
@@ -14,7 +15,8 @@ export async function getServerSideProps(context) {
               props: {
                 entries: diaryEntries.entries,
                 today: diaryEntries.today,
-                todaysEntry: diaryEntries.todaysEntry
+                todaysEntry: diaryEntries.todaysEntry,
+                siteUrl: config.siteUrl
               }
             };
         }
@@ -22,12 +24,13 @@ export async function getServerSideProps(context) {
 
     return {
         props: {
-            entries: []
+            entries: [],
+            siteUrl: config.siteUrl
         }
     }
 }
 
-export default function Diary({ entries, today, todaysEntry }) {
+export default function Diary({ entries, today, todaysEntry, siteUrl }) {
     let props = {
         from: { opacity: 0, transform: 'scaleY(0)', },
         enter: { opacity: 1, transform: 'scaleY(1)', },
@@ -42,7 +45,12 @@ export default function Diary({ entries, today, todaysEntry }) {
     if (entries.length === 0) {
         return (
             <div>
-                <Header></Header>
+                <Header
+                url={siteUrl}
+                desc={"My own personal diary."}
+                imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
+                >
+                </Header>
                 <div id="main" className={styles.main}>
                     <div id={styles.contentDiary} className="w-1/2 lg:mt-28 mx-auto">
                         <div className="lg:flex items-center">
@@ -113,7 +121,12 @@ export default function Diary({ entries, today, todaysEntry }) {
 
     return (
         <div>
-            <Header></Header>
+            <Header
+            url={siteUrl}
+            desc={"My own personal diary."}
+            imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
+            >
+            </Header>
             <div id="main">
                 <div id={styles.contentDiary} className="w-1/2 mt-1-2 lg:mt-28 mx-auto">
                     <div className="lg:flex items-center">

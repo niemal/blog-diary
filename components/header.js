@@ -3,13 +3,25 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Peripherals.module.css';
 
-function Header({ title = "Welcome to niemalground" }) {
+function Header({
+    title = "Welcome to niemalground!",
+    url = "",
+    desc = "",
+    imageUrl = ""
+    }) {
+
     return (
         <div>
             <Head>
                 <title>{title}</title>
                 <meta name="description" content="Generated with ❤️" />
                 <link rel="icon" href="/favicon.ico" />
+
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={url} />
+                <meta property="og:title" content={title} />
+                <meta property="og:description" content={desc} />
+                <meta property="og:image" content={imageUrl} />
             </Head>
             <header>
                 <div id={styles.social} className="mt-6">

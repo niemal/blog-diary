@@ -11,11 +11,10 @@ import styles from '../styles/Blog.module.css';
 import { useState, useRef, useEffect } from 'react';
 import { isMobile } from 'react-device-detect';
 import { getBlogPosts } from '../lib/posts';
-import { getAuthor } from '../lib/author';
+import { author } from '../lib/author';
 
 export async function getStaticProps() {
   const data = getBlogPosts();
-  const author = getAuthor();
   return {
     props: {
       data: data.posts,
@@ -192,7 +191,12 @@ export default function Blog({ data, author, siteUrl }) {
     {!isMobile ? (
       height !== 0 ? (
       <Parallax ref={parallax} pages={pConfig.pages}>
-        <Header></Header>
+        <Header
+        url={siteUrl}
+        desc={author.about}
+        imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
+        >
+        </Header>
         <ParallaxLayer style={{zIndex: 0}} offset={pConfig.bfly} speed={0.5}>
           <Butterfly2></Butterfly2>
         </ParallaxLayer>
@@ -242,7 +246,12 @@ export default function Blog({ data, author, siteUrl }) {
       ) : ''
     ) : (
       <div>
-        <Header></Header>
+        <Header
+        url={siteUrl}
+        desc={author.about}
+        imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
+        >
+        </Header>
         <div id={styles.main} className="mt-32 mb-8">
             <input
             type="text"
