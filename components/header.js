@@ -14,6 +14,7 @@ function Header({
     return (
         <div>
             <Head>
+                <meta charset="utf-8" />
                 <title>{title}</title>
                 <meta name="author" content="niemal" />
                 <meta name="application-name" content="blog-diary" />
@@ -31,6 +32,8 @@ function Header({
                 <meta property="og:description" content={desc} />
                 <meta property="og:image" content={imageUrl} />
                 <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:creator" content="niemal" />
+                <meta name="twitter:url" content={url} />
                 <meta name="twitter:title" content={title} />
                 <meta name="twitter:description" content={desc} />
                 <meta name="twitter:image" content={imageUrl} />
