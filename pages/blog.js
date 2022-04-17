@@ -192,7 +192,7 @@ export default function Blog({ data, author, siteUrl }) {
       height !== 0 ? (
       <Parallax ref={parallax} pages={pConfig.pages}>
         <Header
-        url={siteUrl}
+        url={siteUrl + '/blog'}
         desc={author.about}
         imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
         social={author.social}
@@ -248,7 +248,7 @@ export default function Blog({ data, author, siteUrl }) {
     ) : (
       <div>
         <Header
-        url={siteUrl}
+        url={siteUrl + '/blog'}
         desc={author.about}
         imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
         social={author.social}

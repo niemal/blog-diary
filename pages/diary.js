@@ -48,7 +48,7 @@ export default function Diary({ entries, today, todaysEntry, siteUrl, author }) 
         return (
             <div>
                 <Header
-                url={siteUrl}
+                url={siteUrl + '/diary'}
                 desc={"My own personal diary."}
                 imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
                 social={author.social}
@@ -126,7 +126,7 @@ export default function Diary({ entries, today, todaysEntry, siteUrl, author }) 
     return (
         <div>
             <Header
-            url={siteUrl}
+            url={siteUrl + '/diary'}
             desc={"My own personal diary."}
             imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
             social={author.social}

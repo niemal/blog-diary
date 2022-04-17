@@ -36,7 +36,7 @@ export default function Post({ postData, siteUrl, author }) {
         <div id="main">
             <Header
             title={postData.title}
-            url={siteUrl}
+            url={siteUrl + '/posts/' + postData.title.toLowerCase().replaceAll(' ', '-')}
             desc={postData.desc}
             imageUrl={siteUrl + postData.banner}
             social={author.social}

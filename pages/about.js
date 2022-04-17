@@ -16,7 +16,7 @@ export default function About({ author, siteUrl }) {
     return (
         <div>
             <Header
-            url={siteUrl}
+            url={siteUrl + '/about'}
             desc={author.about}
             imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
             social={author.social}
