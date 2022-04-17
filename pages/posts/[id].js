@@ -38,7 +38,7 @@ export default function Post({ postData, siteUrl, author }) {
             title={postData.title}
             url={siteUrl}
             desc={postData.desc}
-            imageUrl={postData.banner}
+            imageUrl={siteUrl + '/' + postData.banner}
             social={author.social}
             >
             </Header>
