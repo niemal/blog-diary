@@ -196,7 +196,7 @@ export default function Blog({ data, author, siteUrl }) {
         desc={author.about}
         imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
         social={author.social}
-        preload={[data[0]?.banner, data[1]?.banner, data[2]?.banner]}
+        preload={data.map((d) => d.banner)}
         >
         </Header>
         <ParallaxLayer style={{zIndex: 0}} offset={pConfig.bfly} speed={0.5}>
@@ -253,7 +253,7 @@ export default function Blog({ data, author, siteUrl }) {
         desc={author.about}
         imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
         social={author.social}
-        preload={[data[0]?.banner, data[1]?.banner, data[2]?.banner]}
+        preload={data.map((d) => d.banner)}
         >
         </Header>
         <div id={styles.main} className="mt-32 mb-8">

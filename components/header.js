@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Peripherals.module.css';
+import uuid from 'uuid';
 
 function Header({
     title = "Welcome to niemalground!",
@@ -24,9 +25,9 @@ function Header({
                 <link rel="icon" href="/favicon.ico" />
                 <link rel="image_src" href={imageUrl} />
                 
-                {preload.filter((img) => img !== undefined)
+                {preload.filter((img) => img !== undefined && img !== '')
                 .map((img) => 
-                    <link rel="preload" href={img} as="image" />
+                    <link key={uuid()} rel="preload" href={img} as="image" />
                 )}
 
                 <meta property="og:type" content={title !== 'Welcome to niemalground!' ? 'article' : 'website'} />
@@ -37,7 +38,7 @@ function Header({
                 <meta property="og:description" content={desc} />
                 <meta property="og:image" content={imageUrl} />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:creator" content="niemal" />
+                <meta name="twitter:creator" content="@niemal_dev" />
                 <meta name="twitter:url" content={url} />
                 <meta name="twitter:title" content={title} />
                 <meta name="twitter:description" content={desc} />
