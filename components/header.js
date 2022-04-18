@@ -14,7 +14,6 @@ function Header({
     return (
         <div>
             <Head>
-                <meta charset="utf-8" />
                 <title>{title}</title>
                 <meta name="author" content="niemal" />
                 <meta name="application-name" content="blog-diary" />
