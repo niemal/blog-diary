@@ -20,6 +20,7 @@ export default function About({ author, siteUrl }) {
             desc={author.about}
             imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
             social={author.social}
+            preload={[author.avatar]}
             >
             </Header>
             <div id="main">

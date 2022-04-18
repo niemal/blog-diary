@@ -40,6 +40,7 @@ export default function Post({ postData, siteUrl, author }) {
             desc={postData.desc}
             imageUrl={siteUrl + postData.banner}
             social={author.social}
+            preload={postData.banner.length > 0 ? [postData.banner] : []}
             >
             </Header>
             {transition((props, _) => (

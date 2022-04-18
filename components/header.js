@@ -8,7 +8,8 @@ function Header({
     url = "",
     desc = "",
     imageUrl = "",
-    social
+    social,
+    preload = []
     }) {
 
     return (
@@ -23,6 +24,11 @@ function Header({
                 <link rel="icon" href="/favicon.ico" />
                 <link rel="image_src" href={imageUrl} />
                 
+                {preload.filter((img) => img !== undefined)
+                .map((img) => 
+                    <link rel="preload" href={img} as="image" />
+                )}
+
                 <meta property="og:type" content={title !== 'Welcome to niemalground!' ? 'article' : 'website'} />
                 <meta property="og:site_name" content="blog-diary" />
                 <meta property="og:locale" content="en_US" />
