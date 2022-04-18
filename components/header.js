@@ -13,6 +13,9 @@ function Header({
     preload = []
     }) {
 
+    preload.push('/twitter.svg');
+    preload.push('/github.svg');
+
     return (
         <div>
             <Head>
