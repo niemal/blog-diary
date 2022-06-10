@@ -52,11 +52,21 @@ function Header({
                     <a className={`${styles.social}`} href={social.twitter}><Image src="/twitter.svg" alt={''} width={30} height={30} /></a>
                     <a className={`${styles.social} ml-8`} href={social.github}><Image src="/github.svg" alt={''} width={30} height={30} /></a>
                 </div>
-                <nav id={`${styles.navbar}`} className={`flex justify-center items-center p-1 mx-auto ${styles.sticky}`}>
-                    <Link href="/blog"><a className={`inline-block ${styles["animation"]} mt-4 ${styles["text-white"]} flex lg:mt-0 mr-4`}>blog</a></Link>
-                    <Link href="/diary"><a className={`inline-block ${styles["animation"]} mt-4 ${styles["text-white"]} flex lg:mt-0`}>diary</a></Link>
-                    <Image src="/butterfly.svg" alt={''} className={`inline-block lg:mt-0 mr-5`} height={75} width={75} />
-                    <Link href="/about"><a className={`inline-block ${styles["animation"]} mt-4 ${styles["text-white"]} flex lg:mt-0 mr-10`}>about</a></Link>
+                <nav id={styles.navbar} className={`flex justify-center items-center p-1 mx-auto ${styles.sticky}`}>
+                    <Link href="/blog"><a className={`flex-col ${styles["animation"]} mt-4 ${styles["text-white"]} flex lg:mt-0 mr-4`}>blog</a></Link>
+                    <Link href="/diary"><a className={`flex-col ${styles["animation"]} mt-4 ${styles["text-white"]} flex lg:mt-0`}>diary</a></Link>
+                    <Image src="/butterfly.svg" alt={''} className={`flex-col lg:mt-0 mr-4`} height={75} width={75} />
+                    <Link href="/about"><a className={`flex-col ${styles["animation"]} mt-4 ${styles["text-white"]} flex lg:mt-0 mr-4`}>about</a></Link>
+                    <a className={`flex-col ${styles["animation"]} ${styles["text-white"]} mr-4 lg:mt-0 ${styles.collapse}`}>
+                        <span className={styles.rotate}>&gt;</span><span className={`ml-1`}>projects</span>
+                        <a href={"/jobs"} className={`${styles.container} flex ${styles["animation"]}`}>
+                            <img src="/jobs_preview.png" alt={''} className={`flex-col lg:mt-0`} height={200} width={200} />
+                            <div className={`flex flex-col`}>
+                                <span className={`flex-col ${styles["text-white"]} mx-auto mb-4`}>jobs</span>
+                                <span className={`flex-col ${styles["text-white"]}`}>Explore statistics on software jobs (skills, levels) and search for them accordingly.</span>
+                            </div>
+                        </a>
+                    </a>
                 </nav>
             </header>
         </div>
