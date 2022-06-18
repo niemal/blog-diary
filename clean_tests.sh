@@ -12,5 +12,11 @@ rm -rf ./posts/title_of_the_blog_post
 rm -rf ./posts/yeah_well_what_is
 rm -rf ./posts/yet_another_blog_post
 
+# move everything for nginx rendering
+if [ ! -d "./pages/blog" ]; then
+    mkdir "./pages/blog"
+fi
+mv ./pages/* ./pages/blog 2> /dev/null
+
 # diary
 rm -rf "./diary-entries/today"
