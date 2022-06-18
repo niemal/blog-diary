@@ -20,7 +20,7 @@ fi
 # nesting everything for nginx multi-nextjs reverse proxies
 mv ./pages/* ./pages/blog 2> /dev/null
 # non-dangerous (perhaps) way to fix path issues by nesting everything
-find ./pages/blog -type f -readable -writable -exec sed -i "s/\.\./\.\.\/\.\./g" {} \;
+find ./pages/blog -type f -readable -writable -exec sed -i "s/\.\.\//\.\.\/\.\.\//g" {} \;
 
 cat <<EOF > next.config.js
 /** @type {import('next').NextConfig} */
