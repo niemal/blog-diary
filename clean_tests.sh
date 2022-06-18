@@ -18,5 +18,26 @@ if [ ! -d "./pages/blog" ]; then
 fi
 mv ./pages/* ./pages/blog 2> /dev/null
 
+cat <<EOF > next.config.js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  assetPrefix: "/blog",
+}
+
+module.exports = nextConfig
+EOF
+
+cat <<EOF > config.json
+{
+    "siteUrl": "https://niemal.dev/blog",
+    "diary-allowed": ["none"],
+    "service": "gmail",
+    "auth": {
+        "user": "niemallamein@gmail.com"
+    }
+}
+EOF
+
 # diary
 rm -rf "./diary-entries/today"
