@@ -15,12 +15,18 @@ rm -rf ./posts/yet_another_blog_post
 # move everything for nginx rendering
 if [ ! -d "./pages/blog" ]; then
     mkdir "./pages/blog"
+    mv ./pages/* ./pages/blog 2> /dev/null
+    # nesting everything for nginx multi-nextjs reverse proxies
+    find ./pages/blog -type f -readable -writable -exec sed -i "s/\.\.\//\.\.\/\.\.\//g" {} \;
+else
+    # nest all changed files in pages
+    CHANGED_FILES=( $(git show --name-only --pretty='' HEAD | grep pages) )
+    for (( i=0; i<${#CHANGED_FILES[@]}; i++ ))
+    do
+        sed -i "s/\.\.\//\.\.\/\.\.\//g" ${#CHANGED_FILES[$i]}
+        mv ${#CHANGED_FILES[$i]} ./pages/blog/$(echo "${#CHANGED_FILES[$i]}" | sed "s/pages\///g")
+    done
 fi
-
-# nesting everything for nginx multi-nextjs reverse proxies
-mv ./pages/* ./pages/blog 2> /dev/null
-# non-dangerous (perhaps) way to fix path issues by nesting everything
-find ./pages/blog -type f -readable -writable -exec sed -i "s/\.\.\//\.\.\/\.\.\//g" {} \;
 
 cat <<EOF > next.config.js
 /** @type {import('next').NextConfig} */
