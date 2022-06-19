@@ -28,7 +28,7 @@ function PostBlock({ post }) {
     return (
         <>
             {transition((props, whatever) => (
-                <animated.a key={uuid()} href={`/posts/${post.id}`} style={props} className={`w-1/4 items-center ${pb["blog-block"]} mx-auto mb-8`}>
+                <animated.a key={uuid()} href={`/blog/posts/${post.id}`} style={props} className={`w-1/4 items-center ${pb["blog-block"]} mx-auto mb-8`}>
                     <div id={pb.container} className={`block mx-auto mt-4 ml-8 mr-8`}>
                         <h1 className={`text-2xl lg:text-3xl font-bold text-white mb-2 lg:mb-4 mx-auto ${pb.title}`}>{post.title}</h1>
                         

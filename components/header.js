@@ -13,8 +13,8 @@ function Header({
     preload = []
     }) {
 
-    preload.push('/twitter.svg');
-    preload.push('/github.svg');
+    preload.push('/blog/twitter.svg');
+    preload.push('/blog/github.svg');
 
     return (
         <div>
@@ -53,7 +53,7 @@ function Header({
                     <a className={`${styles.social} ml-8`} href={social.github}><Image src="/blog/github.svg" alt={''} width={30} height={30} /></a>
                 </div>
                 <nav id={styles.navbar} className={`flex justify-center items-center p-1 mx-auto ${styles.sticky}`}>
-                    <Link href="/blog"><a className={`flex-col ${styles["animation"]} mt-4 ${styles["text-white"]} flex lg:mt-0 mr-4`}>blog</a></Link>
+                    <Link href="/"><a className={`flex-col ${styles["animation"]} mt-4 ${styles["text-white"]} flex lg:mt-0 mr-4`}>blog</a></Link>
                     <Link href="/diary"><a className={`flex-col ${styles["animation"]} mt-4 ${styles["text-white"]} flex lg:mt-0`}>diary</a></Link>
                     <Image src="/blog/butterfly.svg" alt={''} className={`flex-col lg:mt-0 mr-4`} height={75} width={75} />
                     <Link href="/about"><a className={`flex-col ${styles["animation"]} mt-4 ${styles["text-white"]} flex lg:mt-0 mr-4`}>about</a></Link>
