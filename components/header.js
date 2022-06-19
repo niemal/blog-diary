@@ -60,7 +60,7 @@ function Header({
                     <a className={`flex-col ${styles["animation"]} ${styles["text-white"]} mr-4 lg:mt-0 ${styles.collapse}`}>
                         <span className={styles.rotate}>&gt;</span><span className={`ml-1`}>projects</span>
                         <a href={"/jobs"} className={`${styles.container} flex ${styles["animation"]}`}>
-                            <img src="/jobs_preview.png" alt={''} className={`flex-col lg:mt-0`} height={200} width={200} />
+                            <img src="/blog/jobs_preview.png" alt={''} className={`flex-col lg:mt-0`} height={200} width={200} />
                             <div className={`flex flex-col`}>
                                 <span className={`flex-col ${styles["text-white"]} mx-auto mb-4`}>jobs</span>
                                 <span className={`flex-col ${styles["text-white"]}`}>Explore statistics on software jobs (skills, levels) and search for them accordingly.</span>
