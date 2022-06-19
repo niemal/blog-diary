@@ -13,6 +13,12 @@ Open [http://lan-ip:3000](http://lan-ip:3000) with your browser to see the resul
 
 
 ## Production
+Don't forget to add a `.env` file with a `BLOG_DIARY_PW` password variable for mailing service on new post.
+i.e.
+```
+BLOG_DIARY_PW = "my_secret_auth_token"
+```
+
 Edit the `clean_tests.sh` with the information you seem necessary and proceed to build and deploy (I run my own with [pm2](https://pm2.keymetrics.io/) and [nginx](https://nginx.org/en/)).
 
 ## Learn More
