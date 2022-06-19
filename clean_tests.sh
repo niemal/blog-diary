@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # posts
 rm -rf ./posts/a_ridiculous_long_blog_title_ayy_lmao_yes_it_is
 rm -rf "./posts/a_ridiculous_long_blog_title_ayy_lmao_yes_it_is copy"
