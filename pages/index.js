@@ -64,7 +64,7 @@ function buildBlocks(data, tags=[]) {
   return [pages, tags];
 };
 
-export default function Blog({ data, author, siteUrl }) {
+export default function Home({ data, author, siteUrl }) {
   const parallax = useRef();
   const [height, setHeight] = useState(0);
   const [pConfig, setpConfig] = useState({

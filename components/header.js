@@ -49,13 +49,13 @@ function Header({
             </Head>
             <header>
                 <div id={styles.social} className="mt-6">
-                    <a className={`${styles.social}`} href={social.twitter}><Image src="/twitter.svg" alt={''} width={30} height={30} /></a>
-                    <a className={`${styles.social} ml-8`} href={social.github}><Image src="/github.svg" alt={''} width={30} height={30} /></a>
+                    <a className={`${styles.social}`} href={social.twitter}><Image src="/blog/twitter.svg" alt={''} width={30} height={30} /></a>
+                    <a className={`${styles.social} ml-8`} href={social.github}><Image src="/blog/github.svg" alt={''} width={30} height={30} /></a>
                 </div>
                 <nav id={styles.navbar} className={`flex justify-center items-center p-1 mx-auto ${styles.sticky}`}>
                     <Link href="/blog"><a className={`flex-col ${styles["animation"]} mt-4 ${styles["text-white"]} flex lg:mt-0 mr-4`}>blog</a></Link>
                     <Link href="/diary"><a className={`flex-col ${styles["animation"]} mt-4 ${styles["text-white"]} flex lg:mt-0`}>diary</a></Link>
-                    <Image src="/butterfly.svg" alt={''} className={`flex-col lg:mt-0 mr-4`} height={75} width={75} />
+                    <Image src="/blog/butterfly.svg" alt={''} className={`flex-col lg:mt-0 mr-4`} height={75} width={75} />
                     <Link href="/about"><a className={`flex-col ${styles["animation"]} mt-4 ${styles["text-white"]} flex lg:mt-0 mr-4`}>about</a></Link>
                     <a className={`flex-col ${styles["animation"]} ${styles["text-white"]} mr-4 lg:mt-0 ${styles.collapse}`}>
                         <span className={styles.rotate}>&gt;</span><span className={`ml-1`}>projects</span>

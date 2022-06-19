@@ -9,6 +9,7 @@ const nextConfig = {
       }
     ]
   },
+  basePath: '/blog',
   reactStrictMode: true,
 }
 

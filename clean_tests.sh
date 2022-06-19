@@ -15,29 +15,33 @@ rm -rf ./posts/yeah_well_what_is
 rm -rf ./posts/yet_another_blog_post
 
 # move everything for nginx rendering
-if [ ! -d "./pages/blog" ]; then
-    mkdir "./pages/blog"
-    mv ./pages/* ./pages/blog 2> /dev/null
+#if [ ! -d "./pages/blog" ]; then
+#    mkdir "./pages/blog"
+#    mv ./pages/* ./pages/blog 2> /dev/null
+#    mv ./pages/blog/_app.js ./pages/_app.js
     # nesting everything for nginx multi-nextjs reverse proxies
-    find ./pages/blog -type f -readable -writable -exec sed -i "s/\.\.\//\.\.\/\.\.\//g" {} \;
-else
+#    find ./pages/blog -type f -readable -writable -exec sed -i "s/\.\.\//\.\.\/\.\.\//m" {} \;
+#else
     # nest all changed files in pages
-    CHANGED_FILES=( $(git show --name-only --pretty='' HEAD | grep pages) )
-    for (( i=0; i<${#CHANGED_FILES[@]}; i++ ))
-    do
-        sed -i "s/\.\.\//\.\.\/\.\.\//g" ${#CHANGED_FILES[$i]}
-        mv ${#CHANGED_FILES[$i]} ./pages/blog/$(echo "${#CHANGED_FILES[$i]}" | sed "s/pages\///g")
-    done
-fi
+#    CHANGED_FILES=( $(git show --name-only --pretty='' HEAD | grep pages) )
+#    for (( i=0; i<${#CHANGED_FILES[@]}; i++ ))
+#    do
+#       if [ "${CHANGED_FILES[$i]}" == "pages/_app.js"]; then
+#               continue
+#       fi
+#        sed -i "s/\.\.\//\.\.\/\.\.\//g" ${CHANGED_FILES[$i]}
+#        mv ${CHANGED_FILES[$i]} ./pages/blog/$(echo "${CHANGED_FILES[$i]}" | sed "s/pages\///")
+#    done
+#fi
 
 # make sure blog.js gets renamed to index.js
-mv ./pages/blog/blog.js ./pages/blog/index.js 2> /dev/null
+#mv ./pages/blog/blog.js ./pages/blog/index.js 2> /dev/null
 
 cat <<EOF > next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  assetPrefix: "/blog",
+  basePath: '/blog',
 }
 
 module.exports = nextConfig
