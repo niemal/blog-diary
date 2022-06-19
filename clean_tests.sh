@@ -29,7 +29,7 @@ else
 fi
 
 # make sure blog.js gets renamed to index.js
-mv ./pages/blog/blog.js ./pages/blog/index.js
+mv ./pages/blog/blog.js ./pages/blog/index.js 2> /dev/null
 
 cat <<EOF > next.config.js
 /** @type {import('next').NextConfig} */
