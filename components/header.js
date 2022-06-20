@@ -25,7 +25,7 @@ function Header({
                 <meta name="description" content={desc} />
                 <meta name="thumbnail" content={imageUrl} />
 
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/blog/favicon.ico" />
                 <link rel="image_src" href={imageUrl} />
                 
                 {preload.filter((img) => img !== undefined && img !== '')
