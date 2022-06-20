@@ -59,7 +59,7 @@ export default function Post({ postData, siteUrl, author }) {
                             ))}
                         </div>
                         <div className={`${styles.date} mb-2 ml-2 font-bold inline-block`}>
-                            <Image src="/clock.svg" alt={''} className={`inline-block`} width={20} height={18} />
+                            <Image src="/blog/clock.svg" alt={''} className={`inline-block`} width={20} height={18} />
                             <span className={`ml-1 font-bold inline-block`}>{postData.time}</span>
                         </div>
                         <div id={styles.postData} dangerouslySetInnerHTML={{ __html: postData.content }}></div>
