@@ -1,5 +1,6 @@
 import Header from '../components/header';
 import Footer from '../components/footer';
+import Layout from '../components/layout';
 import PostBlock from '../components/post-block';
 import Pagination from '../components/blog-page-nav';
 import Tags from '../components/tags';
@@ -190,7 +191,7 @@ export default function Home({ data, author, siteUrl }) {
     <>
     {!isMobile ? (
       height !== 0 ? (
-      <Parallax ref={parallax} pages={pConfig.pages}>
+        <Parallax ref={parallax} pages={pConfig.pages}>
         <Header
         url={siteUrl + '/blog'}
         desc={author.about}
@@ -247,30 +248,29 @@ export default function Home({ data, author, siteUrl }) {
       </Parallax>
       ) : ''
     ) : (
-      <div>
-        <Header
-        url={siteUrl + '/blog'}
-        desc={author.about}
-        imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
-        social={author.social}
-        preload={data.map((d) => d.banner)}
-        >
-        </Header>
-        <div id={styles.main} className="mt-32 mb-8">
+      <Layout headerOptions={{
+          url: siteUrl,
+          desc: author.about,
+          imageUrl: siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100',
+          social: author.social,
+          preload: data.map((d) => d.banner)
+        }}>
+          <div id={styles.main} className="mt-32 mb-8">
             <input
             type="text"
-            className={`form-control block w-1/6 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
+            className={`form-control block w-1/4 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
             id={styles.search}
             placeholder="Search.."
             onChange={(e) => { setSearchInput(e.target); search(); }}
             />
             {tagsElem}
-          {mainElem}
-          <div id={styles.pagination}>{pagesElem}</div>
-          <div className={`mx-auto`} style={{width: '95%', paddingBottom: '3rem'}}><Sub siteUrl={siteUrl}></Sub></div>
-        </div>
-        <Footer></Footer>
-      </div>
+            {mainElem}
+            <div id={styles.pagination}>{pagesElem}</div>
+            <div id={styles.subMobile}>
+              <Sub siteUrl={siteUrl}></Sub>
+            </div>
+          </div>
+        </Layout>
     )}
     </>
   );

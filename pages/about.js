@@ -1,7 +1,6 @@
-import Header from '../components/header';
-import Footer from '../components/footer';
 import styles from '../styles/About.module.css';
 import { author, config } from '../lib/author';
+import Layout from '../components/layout';
 
 export async function getStaticProps() {
   return {
@@ -12,6 +11,31 @@ export async function getStaticProps() {
   };
 }
 
+export default function About({ author, siteUrl }) {
+    return (
+        <Layout headOptions={{
+            url: siteUrl + '/about',
+            desc: author.about,
+            imageUrl: siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100',
+            social: author.social,
+            preload: [author.avatar]
+        }}>
+            <div id={styles.wrapper} className="mt-20 w-1/2 mx-auto">
+                <div id={styles.author}>
+                    <h1 className={`text-5xl lg:text-6xl font-bold text-white mb-2 lg:mb-6`}><a href={author.homepage} className={`pb-4`}>{author.name}</a></h1>
+                    <p className="text-md lg:text-xl font-light text-white mb-6">
+                        <div className={`${styles.authorImage} mx-auto`} style={{ backgroundImage: `url('${author.avatar}')` }}></div>
+                        <span>{author.about}</span>
+                        <a href={author.social.twitter}>Twitter</a>
+                        <a href={author.social.github}>Github</a>
+                        <span id={styles.quote}>{author.quotes[Math.floor(Math.random() * author.quotes.length)]}</span>
+                    </p>
+                </div>
+            </div>
+        </Layout>
+    )
+}
+/*
 export default function About({ author, siteUrl }) {
     return (
         <div>
@@ -42,4 +66,4 @@ export default function About({ author, siteUrl }) {
             </div>
         </div>
     );
-}
+}*/

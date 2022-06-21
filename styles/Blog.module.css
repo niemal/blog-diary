@@ -3,16 +3,23 @@
         margin-bottom: 2rem !important;
     }
     #search {
+        text-align: center;
         position: relative !important;
-        width: 150px;
-        margin-bottom: 5px;
+        width: 192px;
+        margin-bottom: 16px;
         margin-left: auto;
-        margin-right: auto;
+        margin-right: 32px;
         left: 0 !important;
     }
     #nomatch {
         width: 90% !important;
     }
+}
+#subMobile {
+    margin-bottom: 48px;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 #author {
     background-color: rgba(0, 128, 255, 0.4);

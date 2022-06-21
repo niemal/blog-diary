@@ -1,8 +1,11 @@
-@media screen and (max-width: 926px) {
+/*@media screen and (max-width: 926px) {
     #contentDiary {
-        margin-top: 100px;
-        width: 90%;
+        
     }
+}*/
+#contentDiary {
+    text-align: center;
+    margin-top: 120px;
 }
 .main {
     min-height: 85.5vh !important;

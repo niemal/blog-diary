@@ -1,6 +1,7 @@
 import uuid from 'uuid';
 import Header from '../components/header';
 import Footer from '../components/footer';
+import Layout from '../components/layout';
 import styles from '../styles/Diary.module.css';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -46,29 +47,20 @@ export default function Diary({ entries, today, todaysEntry, siteUrl, author }) 
 
     if (entries.length === 0) {
         return (
-            <div>
-                <Header
-                url={siteUrl + '/diary'}
-                desc={"My own personal diary."}
-                imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
-                social={author.social}
-                >
-                </Header>
-                <div id="main" className={styles.main}>
-                    <div id={styles.contentDiary} className="w-1/2 lg:mt-28 mx-auto">
-                        <div className="lg:flex items-center">
-                            <div className="block mx-auto">
-                                {transitionHeader((props, h) =>
-                                    <animated.h1 style={props} className="mx-auto text-3xl lg:text-4xl font-bold text-white mb-2 lg:mb-6">
-                                        Sorry, this content is currently private.
-                                    </animated.h1>
-                                )}
-                            </div>
-                        </div>
-                    </div>
+            <Layout headerOptions={{
+                url: siteUrl + '/diary',
+                desc: "My own personal diary.",
+                imageUrl: siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100',
+                social: author.social
+            }}>
+                <div id={styles.contentDiary} className={"lg:mt-28 mx-auto"}>
+                    {transitionHeader((props, h) =>
+                        <animated.h1 style={props} className={"mx-auto text-3xl lg:text-4xl font-bold text-white mb-2 lg:mb-6"}>
+                            Sorry, this content is currently private.
+                        </animated.h1>
+                    )}
                 </div>
-                <Footer></Footer>
-            </div>
+            </Layout>
         );
     }
 
@@ -124,41 +116,36 @@ export default function Diary({ entries, today, todaysEntry, siteUrl, author }) 
     }
 
     return (
-        <div>
-            <Header
-            url={siteUrl + '/diary'}
-            desc={"My own personal diary."}
-            imageUrl={siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100'}
-            social={author.social}
-            >
-            </Header>
-            <div id="main">
-                <div id={styles.contentDiary} className="w-1/2 mt-1-2 lg:mt-28 mx-auto">
-                    <div className="lg:flex items-center">
-                        <div className="block mx-auto">
-                            {transitionHeader((props, h) => <animated.h1 style={props} className="mx-auto text-3xl lg:text-4xl font-bold text-white mb-2 lg:mb-6">{h}</animated.h1>)}
-                            {transitionContent((props, c) => (
-                                <animated.p style={props} className={`${styles.container} flex justify-center mt-6 text-md lg:text-xl font-light text-white mb-6`}>
-                                {c[1] === 'check' ? <Image src={`/check-mark.png`} alt={''} className={styles.mark} width={30} height={30} /> : ''}
-                                {c[1] === 'cancel' ? <Image src={`/cancel.png`} alt={''} className={styles.mark} width={30} height={30} /> : ''}
-                                <span className={`pl-2`}>{c[0]}</span>
-                                </animated.p>
-                            ))}
-                            <div className={`${styles.vLine} mt-10 mx-auto mb-4`}></div>
-                        </div>
+        <Layout headerOptions={{
+            url: siteUrl + '/diary',
+            desc: "My own personal diary.",
+            imageUrl: siteUrl + '/_next/image?url=%2Fbanners%2Fmeta_banner.png&w=1920&q=100',
+            social: author.social
+        }}>
+            <div id={styles.contentDiary} className="mt-1-2 lg:mt-28 mx-auto">
+                <div className="lg:flex items-center">
+                    <div className="block mx-auto">
+                        {transitionHeader((props, h) => <animated.h1 style={props} className="mx-auto text-3xl lg:text-4xl font-bold text-white mb-2 lg:mb-6">{h}</animated.h1>)}
+                        {transitionContent((props, c) => (
+                            <animated.p style={props} className={`${styles.container} flex justify-center mt-6 text-md lg:text-xl font-light text-white mb-6`}>
+                            {c[1] === 'check' ? <Image src={`/check-mark.png`} alt={''} className={styles.mark} width={30} height={30} /> : ''}
+                            {c[1] === 'cancel' ? <Image src={`/cancel.png`} alt={''} className={styles.mark} width={30} height={30} /> : ''}
+                            <span className={`pl-2`}>{c[0]}</span>
+                            </animated.p>
+                        ))}
+                        <div className={`${styles.vLine} mt-10 mx-auto mb-4`}></div>
                     </div>
                 </div>
-                <h2 className="mx-auto text-3xl lg:text-4xl font-bold text-white mb-2">{diaryLayouts[0][0]}</h2>
-                <table id={styles.table} className="table-auto mt-30 text-white lg:text-2xl mb-10 mx-auto">
-                    <thead>
-                        <tr>
-                            <th></th><th></th><th></th><th></th><th></th><th></th><th></th>
-                        </tr>
-                    </thead>
-                    {diaryLayouts[0][1]}
-                </table>
             </div>
-            <Footer></Footer>
-        </div>
+            <h2 className="mx-auto text-center text-3xl lg:text-4xl font-bold text-white mb-2">{diaryLayouts[0][0]}</h2>
+            <table id={styles.table} className="table-auto mt-30 text-white lg:text-2xl mb-10 mx-auto">
+                <thead>
+                    <tr>
+                        <th></th><th></th><th></th><th></th><th></th><th></th><th></th>
+                    </tr>
+                </thead>
+                {diaryLayouts[0][1]}
+            </table>
+        </Layout>
     );
 }

@@ -78,20 +78,12 @@ body {
   /*background: rgb(25,150,255);*/
   /*background: rgb(0, 32, 128);*/
   background: rgb(0, 107, 179);
+}
+html, body, #__next, #__next > div {
   height: 100%;
-}
-#main {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  z-index: 0;
-}
-#content {
-  flex: 1;
 }
 footer {
   background-color: rgb(0 138 255);
-  width: 100%;
 }
 @media screen and (max-width: 926px) {
   #content {

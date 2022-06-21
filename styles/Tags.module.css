@@ -24,7 +24,8 @@
 }
 #phone button {
     position: absolute;
-    top: 8rem;
+    top: 150px;
+    margin-left: 32px;
     left: 5%;
     background-color: rgb(0 128 255);
     border: 1px solid #ffffff;

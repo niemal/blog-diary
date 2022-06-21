@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '../styles/Peripherals.module.css'
+import styles from '../styles/Peripherals.module.css';
 
 function Footer({ relative }) {
     return (
-        <div>
+        <div className={styles.footerWrapper}>
             <footer id={styles.footer} className={`flex justify-center items-center p-5`}>
                 <Link href="/"><a className={`${styles.phoneFix} inline-block ${styles["animation"]} mt-4 ${styles["text-white"]} flex lg:mt-0 mr-10`}>blog</a></Link>
                 <Link href="/diary"><a className={`${styles.phoneFix} inline-block ${styles["animation"]} mt-4 ${styles["text-white"]} flex lg:mt-0 mr-10`}>diary</a></Link>
