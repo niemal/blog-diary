@@ -11,6 +11,9 @@ const nextConfig = {
   },
   basePath: '/blog',
   reactStrictMode: true,
+  compiler: {
+    styledComponents: true,
+  }
 }
 
 module.exports = nextConfig

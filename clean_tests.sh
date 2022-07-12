@@ -42,6 +42,9 @@ cat <<EOF > next.config.js
 const nextConfig = {
   reactStrictMode: true,
   basePath: '/blog',
+  compiler: {
+    styledComponents: true,
+  }
 }
 
 module.exports = nextConfig
