@@ -25,6 +25,7 @@ const Wrapper = styled.div`
 const Title = styled.h1`
   font-size: ${32 / 16}rem;
   font-weight: var(--font-weight-bold);
+  text-align: center;
   background: linear-gradient(
     90deg,
     var(--color-tertiary) 40%,
@@ -43,6 +44,10 @@ const Title = styled.h1`
 
   &::selection {
     -webkit-text-fill-color: var(--color-text);
+  }
+
+  @media ${QUERIES.phoneAndSmaller} {
+    width: 80%;
   }
 `;
 
@@ -90,21 +95,27 @@ const DateWrapper = styled.div`
   }
 `;
 
-const TagsWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 16px;
+const TagsPreWrapper = styled.div`
+  width: 100%;
   padding: 24px;
   border: 3px solid var(--color-text);
   border-top: 0px;
   margin-bottom: 16px;
   border-radius: 0px 0px 8px 8px;
   box-shadow: 2px 3px 3px var(--color-gray-700);
+  background-color: var(--color-background);
+`;
+
+const TagsWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 16px;
 `;
 
 const Tag = styled.a`
   text-decoration: none;
   border: 3px solid;
+  text-align: center;
   border-color: var(--color-secondary);
   font-weight: var(--font-weight-medium);
   text-shadow: 2px 2px 4px hsl(0deg 0% 0% / 0.7);
@@ -142,7 +153,8 @@ const PostWrapper = styled.div`
   /* general Code */
   & pre {
     overflow: auto;
-    margin: 16px 0;
+    margin-bottom: 32px;
+    margin-top: -16px;
     border-radius: 8px;
     border: 3px solid var(--color-info);
     font-weight: var(--font-weight-medium);
@@ -179,6 +191,7 @@ const Em = styled.em`
 const Strong = styled.strong`
   text-shadow: 1px 1px 2px black;
   font-weight: var(--font-weight-bold);
+  white-space: pre-wrap;
   padding: 0 4px;
 `;
 
@@ -228,12 +241,22 @@ const PostLink = styled.a`
 `;
 
 const PostImage = styled.img`
-  padding: 16px;
+  margin-bottom: 32px;
+  padding: 8px;
   border-radius: 16px;
   max-height: 50vh;
   border: 3px solid var(--color-text);
   width: 100%;
   object-fit: cover;
+  background: conic-gradient(
+    from 200deg at 100% 100%,
+    var(--color-tertiary) 15%,
+    var(--color-background) 30%,
+    var(--color-secondary) 52%,
+    var(--color-primary) 70%,
+    var(--color-secondary) 80%,
+    var(--color-info) 100%
+  );
 `;
 
 const Li = styled.li`
@@ -253,7 +276,10 @@ const Ol = styled.ol`
     content: counter(section) ")  ";
     font-weight: var(--font-weight-bold);
   }
-  margin-bottom: 32px;
+  &,
+  & ${Li}:last-of-type {
+    margin-bottom: 32px;
+  }
 `;
 
 const Ul = styled.ul`
@@ -261,10 +287,15 @@ const Ul = styled.ul`
     /* list-style-image: url("/blog/right-arrow.svg"); */
     /* margin: -36px 0; */
     font-size: ${25 / 16}rem;
+    padding-left: 8px;
   }
   & ${Li}::marker {
     font-size: 1.5rem;
     content: "⇝";
+  }
+  &,
+  & ${Li}:last-of-type {
+    margin-bottom: 16px;
   }
 `;
 
@@ -279,6 +310,7 @@ const InlineCode = styled.code`
 
 const P = styled.p`
   font-size: ${22 / 16}rem;
+  line-height: 1.5;
 `;
 
 function PostIndex({ data, siteUrl }) {
@@ -293,13 +325,15 @@ function PostIndex({ data, siteUrl }) {
           <Image src={"/blog/clock.svg"} alt={""} width={20} height={18} />
           <span>{data.time}</span>
         </DateWrapper>
-        <TagsWrapper>
-          {data.tags.map((tag) => (
-            <Tag key={tag} href={`/blog`}>
-              {tag}
-            </Tag>
-          ))}
-        </TagsWrapper>
+        <TagsPreWrapper>
+          <TagsWrapper>
+            {data.tags.map((tag) => (
+              <Tag key={tag} href={`/blog`}>
+                {tag}
+              </Tag>
+            ))}
+          </TagsWrapper>
+        </TagsPreWrapper>
       </HeaderWrapper>
 
       <PostWrapper>

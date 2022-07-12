@@ -1,11 +1,47 @@
 OneTag,TwoTag,ThreeTag,FourTag,FiveTag,SixTag
 banner:!https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821_960_720.jpg
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+So I have been looking for an interesting idea to polish my skills with and I ended up with crawling a few software-related job offering websites _(won't disclose them publicly - yet, but you can guess they are the most famous around)_ in an attempt to look for specific keywords describing a particular skill (i.e. `react`). The idea behind this is to slowly extract related information and try to assemble some statistics to see what kind of knowledge is the industry looking for at a specific date-range. I know this is a bit complicated for an amateur like me, but I did enjoy my time learning stuff and also getting a better grasp on how the software-job market is moving.
+
+I have pretty good hopes for assembling a satisfying data-set in the long-run and I am willing to keep maintaining this fun toy-project of mine. I also please you to take this project with a grain of salt, I am pretty well aware that the industry is looking for people who you can adapt to new knowledge nicely in contrast to having a specific set of knowledge, but nonetheless, I am pretty sure it helps to have a good eye on such stuff, even for the fun of it. Beware, this is not a professional project and is for educational/fun purposes primarily.
+
+I would also like to mention this [post] which was featured on [HN], which describes how a rare skill might prove quite more useful and profitable than others. Again, the idea here is to have a gentle grasp on the industry as a whole while learning new stuff and honing my own personal experience, this is by no means a _you-need-to-know-these-skills_ to begin a successful career-path, although by having a popular skill-set certainly elevates your chance of getting hired and knowing the stuff an employer might be looking for.
+
+However, the software engineering career path is notorious for requiring you to always be on the edge of learning new stuff and looking out for greater challenges that will furtherly hone your own skills and moreover make you a good asset for your current and future employer. Therefore, it is very important to always remember that the ability to adapt to new knowledge in an efficient and fast manner with the thirst of learning is certainly the **most vital and top skill** to possess.
+
+# ["jobs"]
+
+So, let me give you an introduction then! Currently the front-end consists of 2 parts:
+
+- Home
+- Search
+
+At the home-page you can view:
+
+- Top 20 stand-alone skills (i.e. Language#1 is needed by N% of the total job findings).
+- Top 20 skill combinations (i.e. Language#1 + Language#2 is ranked N with a K% prevelance).
+- Level distributions (**blank**% for not having found any, **intern**%, **apprentice**%, **junior**%, **senior**%).
+  ![image](https://i.imgur.com/xF8P3n7.png "skills")
+
+At the search-page you can search for any content keywords you want while maintaining a certain set of rules applied, keeping those rules strict or loose accordingly.
+![image](https://i.imgur.com/QFETQYZ.png "search")
+
+## Back-end API
+
+Currently the crawling is happening every ~20 hours but that is subject to change. You can also use the following API to acquire any information you want. The response will always be an array of JSON (unless the `/api/stats` one), with the **last element** of the array being the total number of the content you are querying for:
+
+- **/api/stats** returns a JSON object with general numeric stats.
+- **/api/jobs/`$index`** where `$index` starts with 0 and maximum is the last element of the response as a number.
+- **/api/content?`$link`** where `$link` is the link of the target you are looking for. (kind of a failed attempt to see how rendering the content on the search page quick-view, subject to be removed)
+- **/api/search/_$searchQuery$_=_$index_** _$searchQuery_ is just a string you want to search for, search is case insensitive. _$index_ starts with 0 and maximum is the last element-1 of any of the responses that are valid.
+- **/api/search/loose?tags=_$tags_&levels=_$levels_&date=_$dateQuery_&search=_$searchQuery_&index=_$index_** _$tags_ can be either "any" or a series of skills seperated by commas, i.e. "c,python,javascript". _$levels_ can be either "any" or a series of levels seperated by commas, i.e. "blank,senior". _$dateQuery_ can be "any", a _$from_, or a _$from-$to_ format where _$from_/_$to_ is in a DD*MM_YYYY format i.e. (13_6_2022). *$searchQuery_ is just a string you want to search for, search is case insensitive. _$index\_ starts with 0 and maximum is the last element-1 of any of the responses that are valid.
+- **/api/search/strict?tags=_$tags_&levels=_$levels_&date=_$dateQuery_&search=_$searchQuery_&index=_$index_** same as above. The difference between strict and loose is on the databse querying, enforcing all parameters in a strict way or not (contains all or any).
+
+## Wrapping up
+
+I expect a lot of bugs and misfunctions to come up but I remain optimistic. I also plan to add better design and insight on the data-set as it will grow bigger with time. Feel free to send me a DM on [twitter] for any questions or suggestions!
+
+[hn]: https://news.ycombinator.com/item?id=31223614
+[post]: https://ano.ee/blog/the-niche-programmer
+[twitter]: https://twitter.com/niemal_dev
+["jobs"]: https://niemal.dev/jobs

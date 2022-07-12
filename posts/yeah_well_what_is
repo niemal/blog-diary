@@ -1,4 +1,174 @@
-OneTag,TwoTag,ThreeTag
-banner:polynesia.webp
-date, date, date, date, date, date, date, date, date, date, date, date, date, date,
-date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, date, 
+programming,web-design,reactjs,nextjs,javascript
+banner:bfly.jpg
+
+After a quite long pause from programming, I decided to dig back into it with a more relaxed and ease-going mindset than before. This time, willing to pick up a specific subject that kind of suits my artistic nature and laziness: **web-design**.
+
+Some years ago when I firstly engaged with web-design, it was mostly PHP and a whole lot of bloated javascript, usually going by the name of _jQuery_. Don't get me wrong, I am a pretty inexperienced guy but if I learned something through-out my programming journey is to do things with a **simplicity** mindset that goes against any kind of bloat-ism.
+
+> If you cannot do great things, do small things in a great way.
+> _Napoleon Hill_
+
+Coming back with a focus on web-design, I can't ignore the fact of a _new_ framework that I never laid my eyes on (it was still kind of early back then): **ReactJS**. The whole component ecosystem seems to be a top-notch approach with a minor burden that's called javascript in the continuously increasing computing power of the internet. Supplying the best user-experience and transforming a website into a full-high-performance functioning application is truly remarkable. _And I thought too much javascript is bloat, yet proper much javascript is something else in its own entirety!_
+
+## My first react-app
+
+Picking up a first project for a new-to-me web-dev framework, can't be nothing else but a blog! Never had a blog anyway, what's better than a blog as a starting point -- I get to pop off from my shell and engage openly with the world too, perhaps giving a tip or 2 to fellow people of need.
+
+After finishing up with the peripherals of my blog (a header and a footer, a so called layout), I quickly realized that the `create-react-app` utility is just purely front-end code. The way react works, is just front-end. _How am I supposed to do server stuff?_
+
+`create-react-app` is just a function for creating a toy-project, it's not a proper starting-point platform for a complete project. I needed either:
+
+- My own custom back-end implementation: [Express], [Fastify], [Nest]
+- A react-based framework such as: [Gatsby], [Next]
+
+Although I do like playing with things around and re-inventing the wheel sometimes _(bad habits)_, I just couldn't ignore the popularity of [Next]. It seemed like a very interesting framework to begin with, and in contrast to [Gatsby] which is static-oriented, [Next] allows me to step out of the box of SSG and implement server-rendering **where it's needed**, greatly expanding my horizon and imagination with a proper optimization mindset.
+
+## CSS & animations
+
+CSS frameworks are not bad at all. Taking a look on [tailwindcss] just made me want to explore it, and as it turns out, it's quite handy and reliable to work with. Animations are sweet and compelling, I couldn't resist digging into [react-spring] as well. For the home page on desktops I am using the [parallax] component which seems quite interesting, it just adds to the imagination that you can do things with. A collapse transition is also used on the mobile on home page triggered by a **tags** button.
+
+## Entering next-js
+
+While a blog idea is good enough, a diary idea is also good too according to psychology. Productivity/creativity and cognition is greatly fueled by happiness. Writing down 3 things you are positive about your day gives you a small boost of progress confidence. Writing down some thoughts about how your day was and how your next day should be, is also a good step towards self-organization and discipline. Reviewing the whole month of past daily notes, can give you a greater sense of progress.
+
+A diary however, is something considered personal and shall be private (if you choose to). Thanks to [Next], I am able to render the diary page however I want! A very simple setting in my `config.json`:
+
+```json
+{
+  "diary-allowed": ["192.168.1.180"]
+}
+```
+
+An array of IPs, if it's empty then it means I made my diary public and any IP is allowed to access the diary page. Using `getServerSideProps()`, I am pushing the appropriate content:
+
+```javascript
+import { diaryEntries, allowed } from "../lib/diary_util";
+
+export async function getServerSideProps(context) {
+  for (let ip of allowed) {
+    if (context.res.socket.remoteAddress.indexOf(ip) > -1) {
+      return {
+        props: {
+          entries: diaryEntries.entries,
+          today: diaryEntries.today,
+          todaysEntry: diaryEntries.todaysEntry,
+        },
+      };
+    }
+  }
+
+  return {
+    props: {
+      entries: [],
+    },
+  };
+}
+```
+
+And just like that, I server-render my diary page however I want, while still keeping the rest of my blog statically served. A very nice function of [Next] is also using the `api` pages, which is how I am using a subscription component to `fetch()`-subscribe and unsubsribe, using a pocket-implementation of an SQLite database:
+
+- **lib/db.js**
+
+```javascript
+export function generateFingerprint(token) {
+  const hasher = crypto.createHmac("sha256", "aliceinwonderland:)(:"); // salt
+  return hasher.update(token).digest("hex");
+}
+
+export function subscribe(mail, fingerprint, callback) {
+  //console.log('subbing');
+  db.serialize(() => {
+    db.run(
+      `INSERT OR IGNORE INTO subs(fingerprint, mail, time) VALUES(?, ?, ?)`,
+      [fingerprint, mail, new Date().getTime()]
+    );
+    db.get(
+      `SELECT mail FROM subs WHERE fingerprint = ?`,
+      [fingerprint],
+      (err, row) => {
+        if (err) {
+          callback(err, null);
+        } else if (row?.mail === undefined) {
+          callback(null, "exists");
+        } else {
+          callback(null, row.mail);
+        }
+      }
+    );
+  });
+}
+
+export function unsubscribe(fingerprint) {
+  db.run(`DELETE FROM subs WHERE fingerprint = ?`, fingerprint);
+}
+```
+
+- **api/sub/[mail].js**
+
+```javascript
+import { subscribe, generateFingerprint } from '../../../lib/db.js';
+
+export const config = {
+    api: {
+      externalResolver: true,
+    },
+};
+
+export default function handler(req, res) {
+    const { mail } = req.query;
+
+    let headers = req.rawHeaders.map((h) => h.toLowerCase());
+    let userAgent = headers[headers.indexOf('user-agent')+1];
+
+    if (mail.match(/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:
+    [\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:
+    [a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.
+    ){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:
+    [\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/)?.length === 1) {
+        let result = subscribe(
+            mail,
+            generateFingerprint(userAgent + res.socket.remoteAddress),
+        (err, mail) => {
+            console.log('sub served');
+            if (err) {
+                res.status(200).json({ error: err });
+            } else if (mail === 'exists') {
+                res.status(200).json({ exists: true });
+            } else {
+                res.status(200).json({ mail: mail });
+            }
+        });
+    } else {
+        res.status(200).json({ invalid: true });
+    }
+}
+```
+
+Since I am using callbacks for node's sqlite3, I am setting `externalResolver` to `true` to turn off warnings about stalled resolving and voila! [Next] really seems amazing so far, and as it seems it was just what I needed for this kick-off project into the world of reactjs and web-design.
+
+## Conclusion
+
+Blog posts are using [markdown], diary entries are just using plaintext and lines that begin with `-` or `+` signify positive/negative things to be flagged. Wrapping everything up, the tree of this project when built looks as follows:
+
+![build-tree](https://i.imgur.com/qVB4LpD.png "build-tree")
+
+I am using an nginx reverse proxy setup which points to `127.0.0.1:3000`. Everytime I want to add an entry, whether it is a blog-post or a diary-entry, I do so and then I just hit my `./update.sh` on my droplet which handles everything for me.
+
+```bash
+git pull && npm run build
+pm2 restart blog
+```
+
+This project is entirely open-source and hosted on [github], feel free to do anything you wish with it. I am using [pm2] to manage it on production. The `build` script cleans up of the preview/testing data that are used in development.
+
+[express]: https://expressjs.com/
+[fastify]: https://www.fastify.io/
+[nest]: https://nestjs.com/
+[gatsby]: https://www.gatsbyjs.com/
+[next]: https://nextjs.org/
+[tailwindcss]: https://tailwindcss.com/
+[react-spring]: https://react-spring.io/
+[parallax]: https://react-spring.io/components/parallax#parallax
+[pm2]: https://pm2.keymetrics.io/
+[markdown]: http://daringfireball.net/projects/markdown/
+[github]: https://github.com/niemal/blog-diary
