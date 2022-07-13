@@ -1,4 +1,4 @@
-OneTag,TwoTag,ThreeTag,FourTag,FiveTag,SixTag
+web-design,crawling,project,backend,reactjs,nextjs,programming,javascript
 banner:!https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821_960_720.jpg
 
 So I have been looking for an interesting idea to polish my skills with and I ended up with crawling a few software-related job offering websites _(won't disclose them publicly - yet, but you can guess they are the most famous around)_ in an attempt to look for specific keywords describing a particular skill (i.e. `react`). The idea behind this is to slowly extract related information and try to assemble some statistics to see what kind of knowledge is the industry looking for at a specific date-range. I know this is a bit complicated for an amateur like me, but I did enjoy my time learning stuff and also getting a better grasp on how the software-job market is moving.
