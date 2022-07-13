@@ -83,12 +83,17 @@ const NavBar = styled.nav`
   }
 `;
 
-const LinkText = styled(SpanHover)`
+const LinkText = styled(SpanHover).attrs({
+  as: "a",
+})`
+  text-decoration: none;
   font-size: ${20 / 16}rem;
   font-weight: var(--font-weight-medium);
 `;
 
-const Collapse = styled(LinkText)`
+const Collapse = styled(LinkText).attrs({
+  as: "span",
+})`
   margin-left: 12px;
   transition: all 750ms;
 
@@ -241,14 +246,14 @@ function NavigationBar({ social, clickHandler, checkboxRef, detailsHandler }) {
         </SocialWrapper>
         <NavBar>
           <Desktop>
-            <Link href="/">
+            <Link href="/" passHref>
               <LinkText>blog</LinkText>
             </Link>
-            <Link href="/diary">
+            <Link href="/diary" passHref>
               <LinkText>diary</LinkText>
             </Link>
             <Butterfly height={75} width={75} />
-            <Link href="/about">
+            <Link href="/about" passHref>
               <LinkText>about</LinkText>
             </Link>
           </Desktop>
