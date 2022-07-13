@@ -82,6 +82,7 @@ const PostDate = styled.div`
 const PostDesc = styled.div`
   color: var(--color-text);
   font-weight: var(--font-weight-light);
+  line-height: 1.3;
 
   display: -webkit-box;
   -webkit-box-orient: vertical;

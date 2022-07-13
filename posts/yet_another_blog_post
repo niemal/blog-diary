@@ -13,8 +13,8 @@ However, the software engineering career path is notorious for requiring you to 
 
 So, let me give you an introduction then! Currently the front-end consists of 2 parts:
 
-- Home
-- Search
+- **Home**
+- **Search**
 
 At the home-page you can view:
 
@@ -30,12 +30,18 @@ At the search-page you can search for any content keywords you want while mainta
 
 Currently the crawling is happening every ~20 hours but that is subject to change. You can also use the following API to acquire any information you want. The response will always be an array of JSON (unless the `/api/stats` one), with the **last element** of the array being the total number of the content you are querying for:
 
-- **/api/stats** returns a JSON object with general numeric stats.
-- **/api/jobs/`$index`** where `$index` starts with 0 and maximum is the last element of the response as a number.
-- **/api/content?`$link`** where `$link` is the link of the target you are looking for. (kind of a failed attempt to see how rendering the content on the search page quick-view, subject to be removed)
-- **/api/search/_$searchQuery$_=_$index_** _$searchQuery_ is just a string you want to search for, search is case insensitive. _$index_ starts with 0 and maximum is the last element-1 of any of the responses that are valid.
-- **/api/search/loose?tags=_$tags_&levels=_$levels_&date=_$dateQuery_&search=_$searchQuery_&index=_$index_** _$tags_ can be either "any" or a series of skills seperated by commas, i.e. "c,python,javascript". _$levels_ can be either "any" or a series of levels seperated by commas, i.e. "blank,senior". _$dateQuery_ can be "any", a _$from_, or a _$from-$to_ format where _$from_/_$to_ is in a DD*MM_YYYY format i.e. (13_6_2022). *$searchQuery_ is just a string you want to search for, search is case insensitive. _$index\_ starts with 0 and maximum is the last element-1 of any of the responses that are valid.
-- **/api/search/strict?tags=_$tags_&levels=_$levels_&date=_$dateQuery_&search=_$searchQuery_&index=_$index_** same as above. The difference between strict and loose is on the databse querying, enforcing all parameters in a strict way or not (contains all or any).
+- **/api/stats**
+  - returns a JSON object with general numeric stats.
+- **/api/jobs/`$index`**
+  - where `$index` starts with 0 and maximum is the last element of the response as a number.
+- **/api/content?`$link`**
+  - where `$link` is the link of the target you are looking for. (kind of a failed attempt to see how rendering the content on the search page quick-view, subject to be removed)
+- **/api/search/`$searchQuery`=`$index`**
+  - `$searchQuery` is just a string you want to search for, search is case insensitive. `$index` starts with 0 and maximum is the last element-1 of any of the responses that are valid.
+- **/api/search/loose?tags=`$tags`&levels=`$levels`&date=`$dateQuery`&search=`$searchQuery`&index=`$index`**
+  - `$tags` can be either "any" or a series of skills seperated by commas, i.e. "c,python,javascript". `$levels` can be either "any" or a series of levels seperated by commas, i.e. "blank,senior". `$dateQuery` can be "any", a `$from`, or a `$from-$to` format where `$from` / `$to` is in a DD_MM_YYYY format i.e. (13_6_2022). `$searchQuery` is just a string you want to search for, search is case insensitive. `$index` starts with 0 and maximum is the last element-1 of any of the responses that are valid.
+- **/api/search/strict?tags=`$tags`&levels=`$levels`&date=`$dateQuery`&search=`$searchQuery`&index=`$index`**
+  - same as above. The difference between strict and loose is on the database querying, enforcing all parameters in a strict way or not (contains all or any).
 
 ## Wrapping up
 

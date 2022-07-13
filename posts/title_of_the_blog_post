@@ -1,5 +1,200 @@
 OneTag,TwoTag,ThreeTag,FourTag,FiveTag,SixTag
 banner:!https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+It is a truly wonderful thing to be able to replicate browser behavior to the greatest extent possible with a headless browser library. Initially I tried using [JSDOM] to accomplish crawling SPA _(single page application)_ web-sites with `nodejs` purely on server side but it was kind of futile, mostly because of `fetch()` errors, I would have to write a custom `fetch()` renderer within [JSDOM] which would be a complete pain to manage and maintain.
+
+I tried upgrading `nodejs` to version `v17.5.0` and then using the `--experimental-fetch` which is pretty self-explanatory -- but the result was the same, [JSDOM] was not able to use `fetch()`. I just had to come up with a better solution that would also contain a more appropriate sand-box to evaluate external javascript code with.
+
+That's when I came across [Puppeteer]. It was precisely what I was looking for, especially when various SPAs make it somehow explicitly difficult to crawl public data. What data is public, is **public**, and I would want to believe that I have every right to process it however I want -- although that is not precisely the [case]. **Even though it's completely legal to scrape publicly available data, there are two types of information we should be cautious about:**
+
+- Copyrighted data
+- Personal information
+
+## Copyrighted public data
+
+Types of copyrighted data may include:
+
+- Images
+- Databases
+- Songs
+- Articles
+- Books
+
+If it's copyrighted then it's **illegal to use** without the express permission of the owner. Specific laws in various countries are not entirely the same on this issue. However, scraping them still is not illegal -- using that information might certainly be.
+
+## Personal information data
+
+Examples of such may include:
+
+- Name
+- Address
+- Date of birth
+- Contact information
+- Employment information
+- Sexual preference
+- Ethnicity
+- Medical information
+- Financial information
+
+Under most laws **Personally Identifiable Information** _(PII)_ is illegal to collect, use or store without the owner's explicit consent. It's very note-worthy to mention that the **GDPR's web-scraping regulation doesn't cover data which has been anonymized**. _TL;DR: You can't legally scrape the websites of companies in the [EEA] for PII._
+
+# Closing on legality
+
+Many still see the legality of web-scraping as a gray area. **If the information isn't protected by a login, it's legal to scrape.** Before scraping though you should always check that site's **Terms & Conditions** to ensure you won't be breach of contract. Additionally, there should be a clickwrap agreement to **ensure that website visitors explicitly agree to those Terms & Conditions**.
+
+A very good case that's worth mentioning is also [hiq-vs-linkedin],
+
+> Other countries with laws to prevent monopolistic practices or anti-trust laws may also see similar
+> disputes and prospectively judgements hailing commercial use of publicly accessible information. While
+> there is global precedence by virtue of large companies such as Thompson Reuters, Bloomberg or Google
+> effectively using web-scraping or crawling to aggregate information from disparate sources across the
+> web, fundamentally the judgement by Ninth Circuit fortifies the lack of enforceability of browse-wrap
+> agreements over conduct of trade using publicly available information.
+
+You should check it out since it's pretty hot around the topic of web scraping legality.
+
+## Puppeteer
+
+Now that the legality part has been covered, it's time to get to the good stuff. Although the crawling speed I have managed is not exactly satisfying, it gets the job done quite consistently, even after running into multiple weird behaviors that would shut it down. The goal is to get the data in the most reliable and fastest way possible. I recommend you read this [article] that explains proper usage in detail and advises against anti-patterns. [Puppeteer-stealth] is a very good addition we will be using, although there are new emerging [technologies] with anti-crawling behavior techniques that are used from various sources, we will try to be as stealthy as possible _(won't be using proxies however)_.
+
+- Defining my own custom device for emulation along with puppeteer:
+
+```javascript
+const puppeteer = require("puppeteer-extra");
+const StealthPlugin = require("puppeteer-extra-plugin-stealth");
+puppeteer.use(StealthPlugin());
+const device = {
+  name: "Chrome XXX",
+  userAgent:
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.79 Safari/537.36",
+  viewport: {
+    width: 1920,
+    height: 1080,
+    deviceScaleFactor: 3,
+    isMobile: false,
+    hasTouch: false,
+    isLandscape: false,
+  },
+};
+```
+
+- My main function:
+
+```javascript
+async function main() {
+  // Init objects
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
+  // Intercepting for optimization, just use what is necessary for parsing
+  await page.setRequestInterception(true);
+  page.on("request", (req) => {
+    if (
+      req.resourceType() === "image" ||
+      req.resourceType() === "font" ||
+      req.resourceType() === "stylesheet"
+    ) {
+      req.abort();
+    } else {
+      req.continue();
+    }
+  });
+
+  // Setting navigation timeout to 0 to avoid weird timeouts
+  await page.setDefaultNavigationTimeout(0);
+
+  // Emulate my device
+  await page.emulate(device);
+
+  // Assuming I want to crawl a website with pagination in the URL, I can first
+  // grab the amount of pages and then run a recursive function to handle weird behavior
+  // that makes it consistent and persistent
+  await page.goto("https://targetdomain.com/");
+
+  // Wait for something that signifies the load of the element that contains
+  // the total pages
+  await page.waitForSelector("a.ThatContainsAmountOfPages");
+
+  // Evaluate to grab the pages number
+  const pagesN = await page.evaluate(() => {
+    return +document.querySelector("a.ThatContainsAmountOfPages").textContent;
+  });
+
+  // Onwards with the recursive function
+  crawl("https://targetdomain.com/", page, pagesN);
+}
+```
+
+- The recursive function:
+
+```javascript
+async function crawl(link, page, pagesN, init_i = 1, init_y = 0) {
+  for (let i = init_i; i < pagesN; i++) {
+    try {
+      if (init_i === 1) {
+        await page.goto(link);
+      } else {
+        await page.goto(link + `?pages=${i}`);
+      }
+      await page.waitForSelector("a.ElementSignifyingLoadAsLink");
+    } catch (err) {
+      console.log(`[error][home=${link}] ${err}`);
+      // Can also add custom logic before initiating the recursion such as page.waitForTimeout()
+      crawl(link, page, pagesN, i, init_y);
+      return;
+    }
+
+    // Grab the links you want to parse along with any data you want
+    const data = await page.evaluate(() => {
+      let anchors = Array.from(
+        document.querySelectorAll("a.ThatContainsAmountOfPages")
+      );
+
+      let result = [];
+      for (let anchor of anchors) {
+        result.push({ title: anchor.textContent, link: anchor.href });
+      }
+
+      return { info: result };
+    });
+
+    for (let y = init_y; y < data.info.length; y++) {
+      try {
+        await page.goto(data.info[y].link);
+        await page.waitForSelector("div.ElementThatIncludesMainContent");
+
+        /* parse the content */
+        const parsed = await page.evaluate(() => {
+          return Array.from(
+            document.querySelectorAll("elementWithContent")
+          ).map((el) => {
+            /* etc etc */
+            return el.textContent;
+          });
+        });
+      } catch (err) {
+        console.log(`[error] ${err}`);
+        crawl(link, page, pagesN, i, y);
+        return;
+      }
+    }
+
+    // reset init_y
+    if (init_y > 0) {
+      init_y = 0;
+    }
+  }
+}
+```
+
+You could always grab the next page from a pagination element and use that to move forward, asserting if it's null or not as the last page, etc, you get the idea. And that's how you get the job done in a fast, smooth and properly browser replicated manner IMHO. If you have any tips or questions feel free to hit my DM on [twitter]. Happy legal crawling folks!
+
+[jsdom]: https://github.com/jsdom/jsdom
+[puppeteer]: https://puppeteer.github.io/puppeteer/
+[case]: https://www.termsfeed.com/blog/web-scraping-laws/#Copyrighted_Data
+[eea]: https://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:European_Economic_Area_(EEA)
+[article]: https://serpapi.com/blog/puppeteer-antipatterns/
+[puppeteer-stealth]: https://www.npmjs.com/package/puppeteer-extra-plugin-stealth
+[hiq-vs-linkedin]: https://en.wikipedia.org/wiki/HiQ_Labs_v._LinkedIn
+[technologies]: https://datadome.co/bot-detection/detecting-headless-chrome-puppeteer-extra-plugin-stealth/
+[twitter]: https://twitter.com/niemal_dev

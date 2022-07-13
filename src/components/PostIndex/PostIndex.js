@@ -145,6 +145,7 @@ const PostWrapper = styled.div`
   /* background-color: var(--color-background-fade); */
   display: grid;
   grid-template-columns: 1fr min(75ch, 100%) 1fr;
+  border-radius: 32px;
 
   & > * {
     grid-column: 2;
@@ -193,6 +194,9 @@ const Strong = styled.strong`
   font-weight: var(--font-weight-bold);
   white-space: pre-wrap;
   padding: 0 4px;
+  & ${Em} {
+    display: inline-block;
+  }
 `;
 
 const Blockquote = styled.blockquote`
@@ -241,6 +245,7 @@ const PostLink = styled.a`
 `;
 
 const PostImage = styled.img`
+  margin-top: 16px;
   margin-bottom: 32px;
   padding: 8px;
   border-radius: 16px;
@@ -291,11 +296,21 @@ const Ul = styled.ul`
   }
   & ${Li}::marker {
     font-size: 1.5rem;
-    content: "⇝";
+    content: "⁕";
   }
   &,
   & ${Li}:last-of-type {
     margin-bottom: 16px;
+  }
+  & ${Li} & ${Li}::marker {
+    content: "";
+  }
+  & ${Li} & ${Li} {
+    margin-top: 4px;
+    border: 8px solid var(--color-tertiary);
+    border-top: 0;
+    border-bottom: 0;
+    border-right: 0;
   }
 `;
 
@@ -306,6 +321,7 @@ const Code = styled.code`
 const InlineCode = styled.code`
   font-weight: var(--font-weight-medium);
   border-radius: 8px;
+  display: inline-block;
 `;
 
 const P = styled.p`

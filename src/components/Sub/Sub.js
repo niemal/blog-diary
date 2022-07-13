@@ -7,7 +7,7 @@ import SearchBox from "../SearchBox";
 import { QUERIES } from "../constants";
 
 const Wrapper = styled.div`
-  width: 650px;
+  width: 675px;
   max-width: min(100%, calc(650px + 32px * 2));
   background-color: var(--color-primary);
   text-shadow: 1px 1px 2px rgb(0, 0, 0);
@@ -36,11 +36,6 @@ const Title = styled.h1`
   color: var(--color-text);
   font-weight: var(--font-weight-bold);
   z-index: 2;
-
-  /* @media (max-width: 925px) {
-    font-size: ${24 / 16}rem !important;
-    line-height: ${24 / 16}rem !important;
-  } */
 `;
 
 const Loading = styled.img`

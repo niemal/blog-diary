@@ -7,7 +7,7 @@ import { QUERIES } from "../constants";
 const Wrapper = styled.footer`
   width: 100%;
   position: relative;
-  min-height: 80px;
+  min-height: 100px;
   background-color: ${(p) => p.color};
   box-shadow: 4px 2px 5px 1px rgba(0, 0, 0, 0.7);
 
