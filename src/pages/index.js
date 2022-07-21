@@ -97,7 +97,7 @@ export default function Home({ data, author, siteUrl }) {
   const parallax = useRef();
   const [height, setHeight] = useState(0);
   const [pConfig, setpConfig] = useState({
-    pages: 1.7,
+    pages: 1.8,
     pagination: {
       start: 0.2,
       end: 1.2,
