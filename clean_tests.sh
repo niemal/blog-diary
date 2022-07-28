@@ -44,7 +44,10 @@ const nextConfig = {
   basePath: '/blog',
   compiler: {
     styledComponents: true,
-  }
+  },
+  images: {
+    domains: ["cdn.pixabay.com", "avatars.githubusercontent.com"],
+  },
 }
 
 module.exports = nextConfig
