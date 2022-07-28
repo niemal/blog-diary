@@ -14,11 +14,12 @@ const DesktopTabletWrapper = styled.header`
   min-height: 80px;
   width: 100%;
   top: 0;
-  /* background-color: rgb(0 128 255); */
-  background-color: var(--color-primary);
+  background-color: var(--color-gray-800);
   box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.2);
 
   & img {
+    filter: invert(28%) sepia(49%) saturate(4962%) hue-rotate(220deg)
+      brightness(100%) contrast(102%);
     transition: filter 500ms;
   }
   &:hover img {
@@ -145,7 +146,6 @@ const CollapseEntry = styled(LinkText).attrs({
   as: "a",
 })`
   position: absolute;
-  /* background-color: rgba(0, 128, 255, 0.8); */
   background-color: var(--color-secondary-fade);
   padding: 2rem;
   display: none;
@@ -180,13 +180,15 @@ const CollapseEntry = styled(LinkText).attrs({
   }
 `;
 
-const CollapseEntryImage = styled.img`
-  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.35);
-  filter: none !important;
+const CollapseEntryImageWrapper = styled.div`
+  & > span img {
+    box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.35);
+    filter: none !important;
 
-  @media (max-width: 950px) {
-    width: 130px;
-    height: 130px;
+    @media ${QUERIES.tabletAndSmaller} {
+      width: 130px !important;
+      height: 130px !important;
+    }
   }
 `;
 
@@ -238,10 +240,22 @@ function NavigationBar({ social, clickHandler, checkboxRef, detailsHandler }) {
       <DesktopTabletWrapper>
         <SocialWrapper>
           <SocialLink href={social.twitter}>
-            <Image src="/blog/twitter.svg" alt={""} width={30} height={30} />
+            <Image
+              src="/blog/twitter.svg"
+              alt={""}
+              width={30}
+              height={30}
+              loading={`eager`}
+            />
           </SocialLink>
           <SocialLink href={social.github}>
-            <Image src="/blog/github.svg" alt={""} width={30} height={30} />
+            <Image
+              src="/blog/github.svg"
+              alt={""}
+              width={30}
+              height={30}
+              loading={`eager`}
+            />
           </SocialLink>
         </SocialWrapper>
         <NavBar>
@@ -275,12 +289,15 @@ function NavigationBar({ social, clickHandler, checkboxRef, detailsHandler }) {
             <Rotate>&gt;</Rotate>
             <CollapseTitle>projects</CollapseTitle>
             <CollapseEntry href={"/jobs"}>
-              <CollapseEntryImage
-                src="/blog/jobs_preview.png"
-                alt={""}
-                height={200}
-                width={200}
-              />
+              <CollapseEntryImageWrapper>
+                <Image
+                  src="/blog/jobs_preview.png"
+                  alt={""}
+                  height={400}
+                  width={400}
+                  loading={`eager`}
+                />
+              </CollapseEntryImageWrapper>
               <CollapseEntryDetails>
                 <CollapseEntryTitle>jobs</CollapseEntryTitle>
                 <CollapseEntryDescription>
@@ -296,10 +313,22 @@ function NavigationBar({ social, clickHandler, checkboxRef, detailsHandler }) {
 
       <MobileWrapper>
         <SocialLink href={social.twitter}>
-          <Image src="/blog/twitter.svg" alt={""} width={30} height={30} />
+          <Image
+            src="/blog/twitter.svg"
+            alt={""}
+            width={30}
+            height={30}
+            loading={`eager`}
+          />
         </SocialLink>
         <SocialLink href={social.github}>
-          <Image src="/blog/github.svg" alt={""} width={30} height={30} />
+          <Image
+            src="/blog/github.svg"
+            alt={""}
+            width={30}
+            height={30}
+            loading={`eager`}
+          />
         </SocialLink>
 
         {clickHandler && checkboxRef ? (
@@ -321,12 +350,15 @@ function NavigationBar({ social, clickHandler, checkboxRef, detailsHandler }) {
           <Rotate>&gt;</Rotate>
           <CollapseTitle>projects</CollapseTitle>
           <CollapseEntry href={"/jobs"}>
-            <CollapseEntryImage
-              src="/blog/jobs_preview.png"
-              alt={""}
-              height={200}
-              width={200}
-            />
+            <CollapseEntryImageWrapper>
+              <Image
+                src="/blog/jobs_preview.png"
+                alt={""}
+                height={400}
+                width={400}
+                loading={`eager`}
+              />
+            </CollapseEntryImageWrapper>
             <CollapseEntryDetails>
               <CollapseEntryTitle>jobs</CollapseEntryTitle>
               <CollapseEntryDescription>

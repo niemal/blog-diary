@@ -200,7 +200,7 @@ function ParallaxIndex({
       </ParallaxLayer>
 
       <FooterWrapper>
-        <Footer color={`var(--color-primary-fade)`} />
+        <Footer />
       </FooterWrapper>
     </Parallax>
   );

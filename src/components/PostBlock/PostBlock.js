@@ -55,7 +55,7 @@ const BannerWrapper = styled.div`
   overflow: hidden;
 
   & > span img {
-    transition: transform 350ms ease-in-out;
+    transition: transform 150ms ease-in-out;
     object-fit: cover;
     width: 100% !important;
     height: 100% !important;
@@ -154,7 +154,12 @@ function PostBlock({ post }) {
 
             {post.banner.length > 0 ? (
               <BannerWrapper>
-                <Image src={post.banner} width={1920} height={1080} />
+                <Image
+                  src={post.banner}
+                  width={800}
+                  height={600}
+                  loading={`eager`}
+                />
               </BannerWrapper>
             ) : (
               ""

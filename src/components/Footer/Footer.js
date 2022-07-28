@@ -30,6 +30,11 @@ const DesktopAndTabletWrapper = styled.div`
   padding: 16px 64px;
   z-index: 3;
 
+  & img {
+    filter: invert(28%) sepia(49%) saturate(4962%) hue-rotate(220deg)
+      brightness(100%) contrast(102%);
+    transition: filter 500ms;
+  }
   &:hover img {
     filter: invert(78%) sepia(50%) saturate(1025%) hue-rotate(137deg)
       brightness(107%) contrast(105%);
@@ -107,7 +112,7 @@ const ImageLastTextWrapper = styled.div`
   gap: 48px;
 `;
 
-function Footer({ color = "var(--color-primary-fade)" }) {
+function Footer({ color = "var(--color-gray-800-fade)" }) {
   return (
     <Wrapper color={color}>
       <DesktopAndTabletWrapper>

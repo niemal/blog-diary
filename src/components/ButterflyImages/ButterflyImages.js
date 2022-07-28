@@ -14,6 +14,7 @@ export function Butterfly({ width = 600, height = 600 }) {
         alt={""}
         width={width}
         height={height}
+        loading={`eager`}
       />
     </ButterflyWrapper>
   );
@@ -27,6 +28,7 @@ export function Butterfly2({ width = 600, height = 600 }) {
         alt={""}
         width={width}
         height={height}
+        loading={`eager`}
       />
     </ButterflyWrapper>
   );
@@ -74,15 +76,21 @@ const BackgroundHalfTwoWrapper = styled(BackgroundHalfOneWrapper)`
   }
 `;
 
-const ButterflyImageOne = styled.img`
+const ButterflyImageOneWrapper = styled.div`
   position: sticky;
   top: 0;
   width: 550px;
   height: 500px;
   max-width: 60%;
+
+  & > span img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+  }
 `;
 
-const ButterflyImageTwo = styled(ButterflyImageOne)`
+const ButterflyImageTwoWrapper = styled(ButterflyImageOneWrapper)`
   transform: scaleX(-1);
   height: 800px;
   max-width: 85%;
@@ -93,10 +101,24 @@ export function ButterflySticky({ overflow }) {
     <FixedWrapper style={{ "--overflow": overflow }}>
       <RelativeWrapper>
         <BackgroundHalfOneWrapper>
-          <ButterflyImageOne src={`/blog/butterfly.svg`}></ButterflyImageOne>
+          <ButterflyImageOneWrapper>
+            <Image
+              src={`/blog/butterfly.svg`}
+              width={550}
+              height={500}
+              loading={`eager`}
+            />
+          </ButterflyImageOneWrapper>
         </BackgroundHalfOneWrapper>
         <BackgroundHalfTwoWrapper>
-          <ButterflyImageTwo src={`/blog/butterfly.svg`}></ButterflyImageTwo>
+          <ButterflyImageTwoWrapper>
+            <Image
+              src={`/blog/butterfly.svg`}
+              width={550}
+              height={800}
+              loading={`eager`}
+            />
+          </ButterflyImageTwoWrapper>
         </BackgroundHalfTwoWrapper>
       </RelativeWrapper>
     </FixedWrapper>

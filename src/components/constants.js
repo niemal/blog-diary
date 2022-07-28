@@ -17,6 +17,7 @@ export const COLORS = {
     600: "hsl(0deg 0% 40%)",
     700: "hsl(0deg 0% 30%)",
     800: "hsl(0deg 0% 20%)",
+    fade_800: "hsl(0deg 0% 20% / 0.85)",
     900: "hsl(0deg 0% 10%)",
   },
 };

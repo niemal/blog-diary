@@ -146,6 +146,7 @@ strong {
   --color-gray-600: ${COLORS.gray[600]};
   --color-gray-700: ${COLORS.gray[700]};
   --color-gray-800: ${COLORS.gray[800]};
+  --color-gray-800-fade: ${COLORS.gray["fade_800"]};
   --color-gray-900: ${COLORS.gray[900]};
 }
 `;

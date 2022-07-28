@@ -6,10 +6,10 @@ function MetaHeader({
   url = "",
   desc = "",
   imageUrl = "",
-  preload = [],
+  // preload = [],
 }) {
-  preload.push("/blog/twitter.svg");
-  preload.push("/blog/github.svg");
+  // preload.push("/blog/twitter.svg");
+  // preload.push("/blog/github.svg");
 
   return (
     <Head>
@@ -22,11 +22,11 @@ function MetaHeader({
       <link rel="icon" href="/blog/favicon.ico" />
       <link rel="image_src" href={imageUrl} />
 
-      {preload
+      {/* {preload
         .filter((img) => img !== undefined && img !== "")
         .map((img) => (
           <link key={uuid()} rel="preload" href={img} as="image" />
-        ))}
+        ))} */}
 
       <meta
         property="og:type"
