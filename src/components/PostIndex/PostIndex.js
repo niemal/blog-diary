@@ -69,14 +69,16 @@ const HeaderWrapper = styled.div`
   }
 `;
 
-const BannerImage = styled.img`
-  border: 3px solid var(--color-text);
-  width: 85%;
-  height: 40vh;
-  object-fit: cover;
+const BannerImageWrapper = styled.div`
+  & > span img {
+    border: 3px solid var(--color-text) !important;
+    width: 85% !important;
+    height: 60vh !important;
+    object-fit: cover;
 
-  @media ${QUERIES.phoneAndSmaller} {
-    width: 100%;
+    @media ${QUERIES.phoneAndSmaller} {
+      width: 100%;
+    }
   }
 `;
 
@@ -335,10 +337,27 @@ function PostIndex({ data, siteUrl }) {
       <Title>{data.title}</Title>
 
       <HeaderWrapper>
-        {data.banner.length > 0 ? <BannerImage src={data.banner} /> : ""}
+        {data.banner.length > 0 ? (
+          <BannerImageWrapper>
+            <Image
+              src={data.banner}
+              width={1920}
+              height={1080}
+              loading={`eager`}
+            />
+          </BannerImageWrapper>
+        ) : (
+          ""
+        )}
 
         <DateWrapper>
-          <Image src={"/blog/clock.svg"} alt={""} width={20} height={18} />
+          <Image
+            src={"/blog/clock.svg"}
+            alt={""}
+            width={20}
+            height={18}
+            loading={`eager`}
+          />
           <span>{data.time}</span>
         </DateWrapper>
         <TagsPreWrapper>
