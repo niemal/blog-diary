@@ -3,20 +3,20 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/blog',
-        destination: '/',
+        source: "/blog",
+        destination: "/",
         permanent: true,
-      }
-    ]
+      },
+    ];
   },
-  basePath: '/blog',
+  basePath: "/blog",
   reactStrictMode: true,
   compiler: {
     styledComponents: true,
   },
   images: {
-    domains: ['cdn.pixabay.com']
-  }
-}
+    domains: ["cdn.pixabay.com", "avatars.githubusercontent.com"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

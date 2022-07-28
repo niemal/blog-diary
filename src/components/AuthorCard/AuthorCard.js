@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 import SpanHover from "../SpanHover";
 import { Butterfly2 } from "../ButterflyImages";
 
@@ -13,6 +14,7 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 16px;
   background-color: var(--color-primary);
+  border: 4px solid var(--color-gray-800);
   border-radius: 5000px 5000px 1000px 1000px;
   text-shadow: 2px 2px 3px rgb(0, 0, 0);
   box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.3);
@@ -37,21 +39,21 @@ const TitleLink = styled(SpanHover).attrs({
   } */
 `;
 
+const AuthorImageWrapper = styled.div`
+  z-index: 1;
+  filter: drop-shadow(0px -8px 30px var(--color-tertiary));
+
+  & > span img {
+    border-radius: 5000px !important;
+    object-fit: cover;
+  }
+`;
 const AuthorImage = styled.img`
   width: 250px;
   height: 250px;
   object-fit: cover;
   border-radius: 5000px;
-  filter: drop-shadow(0px -8px 30px var(--color-tertiary));
   z-index: 1;
-
-  /* @media (max-width: 925px) {
-    & {
-      margin-bottom: 8px;
-      width: 150px;
-      height: 150px;
-    }
-  } */
 `;
 
 const About = styled.p`
@@ -102,7 +104,9 @@ function AuthorCard({ author, fullCard = false }) {
         <Butterfly2 />
       </ImageWrapper>
       <TitleLink href={author.homepage}>{author.name}</TitleLink>
-      <AuthorImage src={author.avatar} />
+      <AuthorImageWrapper>
+        <Image src={author.avatar} width={250} height={250} loading={`eager`} />
+      </AuthorImageWrapper>
 
       <About>{author.about}</About>
 

@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
-const SearchBox = styled.input`
+const SearchBox = styled.input.attrs({
+  type: "text",
+})`
   width: 75%;
   padding: 8px;
   font-size: ${22 / 16}rem;
   font-weight: var(--font-weight-bold);
-  border: 5px solid var(--color-secondary);
+  border: 5px solid var(--color-gray-700);
   border-radius: 8px;
-  background-color: var(--color-primary);
+  background-color: var(--color-gray-600);
   color: var(--color-text);
   z-index: 2;
 

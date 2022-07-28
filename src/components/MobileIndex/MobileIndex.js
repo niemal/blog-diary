@@ -68,11 +68,7 @@ function MobileIndex({
     >
       <MainWrapper>
         <InputAndTagsWrapper>
-          <SearchBox
-            type="text"
-            placeholder="Search.."
-            onChange={searchHandler}
-          />
+          <SearchBox placeholder="Search.." onChange={searchHandler} />
           <TagsButton
             collapse={collapse}
             clickHandler={() => {

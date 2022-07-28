@@ -50,14 +50,13 @@ const LeftWrapper = styled.div`
   }
 `;
 
-// className={`form-control block w-1/6 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
 const Input = styled.input`
   max-width: 250px;
   width: 100%;
   padding: 8px;
   font-size: ${22 / 16}rem;
   font-weight: var(--font-weight-bold);
-  border: 5px solid var(--color-secondary);
+  border: 5px solid var(--color-gray-800);
   border-radius: 8px;
   background-color: var(--color-primary);
   color: var(--color-text);
