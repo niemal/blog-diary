@@ -1,6 +1,6 @@
 {
-    "siteUrl": "http://192.168.1.180:3000/blog",
-    "diary-allowed": ["192.168.1.180"],
+    "siteUrl": "http://192.168.1.6:3000/blog",
+    "diary-allowed": ["192.168.1.6"],
     "service": "gmail",
     "auth": {
         "user": "niemallamein@gmail.com"
