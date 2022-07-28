@@ -58,7 +58,7 @@ const Input = styled.input`
   font-weight: var(--font-weight-bold);
   border: 5px solid var(--color-gray-800);
   border-radius: 8px;
-  background-color: var(--color-primary);
+  background-color: var(--color-gray-600);
   color: var(--color-text);
 
   &::placeholder {

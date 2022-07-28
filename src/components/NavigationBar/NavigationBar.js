@@ -157,6 +157,7 @@ const CollapseEntry = styled(LinkText).attrs({
   max-width: max-content;
   margin-right: 5rem;
   box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.2);
+  border: 4px solid var(--color-gray-800);
   z-index: 2;
   text-decoration: none;
 
