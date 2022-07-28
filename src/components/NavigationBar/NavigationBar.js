@@ -14,7 +14,11 @@ const DesktopTabletWrapper = styled.header`
   min-height: 80px;
   width: 100%;
   top: 0;
-  background-color: var(--color-gray-800);
+  background: radial-gradient(
+    circle at 50% 50%,
+    var(--color-gray-800) 30%,
+    var(--color-gray-600) 100%
+  );
   box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.2);
 
   & img {
