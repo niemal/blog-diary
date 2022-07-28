@@ -49,7 +49,7 @@ const Title = styled.h1`
 const BannerWrapper = styled.div`
   width: 100%;
   height: 20vh;
-  border:  8px solid var(--color-info);
+  border: 8px solid var(--color-info);
   border-radius: 8px;
   transition: border-color 250ms ease-in-out;
   overflow: hidden;
@@ -71,27 +71,6 @@ const BannerWrapper = styled.div`
     height: 30vh;
   }
 `;
-
-// const Banner = styled.img`
-//   width: 100%;
-//   height: 20vh;
-//   object-fit: cover;
-//   border: 8px solid var(--color-info);
-//   border-radius: 8px;
-//   transition: border-color transform 250ms ease-in-out;
-
-//   ${Wrapper}:hover & {
-//     border-color: var(--color-text);
-//     transform: scale(1.2);
-//   }
-
-//   @media ${QUERIES.laptopAndSmaller} {
-//     height: 35vh;
-//   }
-//   @media ${QUERIES.tabletAndSmaller} {
-//     height: 30vh;
-//   }
-// `;
 
 const PostDate = styled.div`
   font-size: ${20 / 16}rem;
@@ -173,13 +152,14 @@ function PostBlock({ post }) {
           <Wrapper>
             <Title>{post.title}</Title>
 
-            {/* {post.banner.length > 0 ? <Banner src={post.banner} /> : ""} */}
+            {post.banner.length > 0 ? (
+              <BannerWrapper>
+                <Image src={post.banner} width={1920} height={1080} />
+              </BannerWrapper>
+            ) : (
+              ""
+            )}
 
-          {post.banner.length > 0 ? (
-            <BannerWrapper>
-              <Image src={post.banner} width={1920} height={1080} />
-            </BannerWrapper>
-          ) : ""}
             <PostDate>
               <Image src="/blog/clock.svg" alt={""} width={20} height={18} />
               <span>{post.time}</span>
