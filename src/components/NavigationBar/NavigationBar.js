@@ -210,6 +210,7 @@ const CollapseEntryTitle = styled.span`
 
 const CollapseEntryDescription = styled.span`
   color: var(--color-text);
+  line-height: ${24 / 16}rem;
   margin-left: 16px;
 `;
 
@@ -293,10 +294,10 @@ function NavigationBar({ social, clickHandler, checkboxRef, detailsHandler }) {
           <Collapse onClick={detailsHandler}>
             <Rotate>&gt;</Rotate>
             <CollapseTitle>projects</CollapseTitle>
-            <CollapseEntry href={"/jobs"}>
+            <CollapseEntry href={"https://niemal.github.io/portfolio#projects"}>
               <CollapseEntryImageWrapper>
                 <Image
-                  src="/blog/jobs_preview.png"
+                  src="/blog/projects.png"
                   alt={""}
                   height={400}
                   width={400}
@@ -304,10 +305,9 @@ function NavigationBar({ social, clickHandler, checkboxRef, detailsHandler }) {
                 />
               </CollapseEntryImageWrapper>
               <CollapseEntryDetails>
-                <CollapseEntryTitle>jobs</CollapseEntryTitle>
+                <CollapseEntryTitle>Portfolio</CollapseEntryTitle>
                 <CollapseEntryDescription>
-                  Explore statistics on software jobs (skills, levels) and
-                  search for them accordingly.
+                  Explore my projects on my portfolio page!
                 </CollapseEntryDescription>
               </CollapseEntryDetails>
             </CollapseEntry>
@@ -354,10 +354,10 @@ function NavigationBar({ social, clickHandler, checkboxRef, detailsHandler }) {
         <Collapse onClick={detailsHandler}>
           <Rotate>&gt;</Rotate>
           <CollapseTitle>projects</CollapseTitle>
-          <CollapseEntry href={"/jobs"}>
+          <CollapseEntry href={"https://niemal.github.io/portfolio#projects"}>
             <CollapseEntryImageWrapper>
               <Image
-                src="/blog/jobs_preview.png"
+                src="/blog/portfolio.png"
                 alt={""}
                 height={400}
                 width={400}
@@ -365,10 +365,9 @@ function NavigationBar({ social, clickHandler, checkboxRef, detailsHandler }) {
               />
             </CollapseEntryImageWrapper>
             <CollapseEntryDetails>
-              <CollapseEntryTitle>jobs</CollapseEntryTitle>
+              <CollapseEntryTitle>Portfolio</CollapseEntryTitle>
               <CollapseEntryDescription>
-                Explore statistics on software jobs (skills, levels) and search
-                for them accordingly.
+                Explore my projects on my portfolio page!
               </CollapseEntryDescription>
             </CollapseEntryDetails>
           </CollapseEntry>
