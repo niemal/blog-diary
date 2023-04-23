@@ -1,4 +1,5 @@
-import uuid from "uuid";
+// import uuid from "uuid";
+import { v4 as uuid } from "uuid";
 import Layout from "../components/Layout";
 import { QUERIES } from "../components/constants";
 import styled from "styled-components";
@@ -230,13 +231,17 @@ export default function Diary({
 
       for (let y = i; y < max; y++) {
         if (entry[2][y][2])
-          entryRow.push(<FutureDay key={uuid()}>{entry[2][y][0]}</FutureDay>);
+          entryRow.push(
+            <FutureDay key={`entry-${y}`}>{entry[2][y][0]}</FutureDay>
+          );
         else if (entry[2][y][1].length === 0)
-          entryRow.push(<UnusedDay key={uuid()}>{entry[2][y][0]}</UnusedDay>);
+          entryRow.push(
+            <UnusedDay key={`entry-${y}`}>{entry[2][y][0]}</UnusedDay>
+          );
         else
           entryRow.push(
             <UsedDay
-              key={uuid()}
+              key={`entry-${y}`}
               onClick={() =>
                 clicked(entry[2][y][0], entry[0] + 1, entry[1], entry[2][y][1])
               }
@@ -245,9 +250,11 @@ export default function Diary({
             </UsedDay>
           );
       }
-      entryBody.push(<tr key={uuid()}>{entryRow}</tr>);
+      entryBody.push(<tr key={`entry-${i}`}>{entryRow}</tr>);
     }
-    layout.push(<tbody key={uuid()}>{entryBody}</tbody>);
+    layout.push(
+      <tbody key={`${entry[0] + 1}, ${entry[1]}`}>{entryBody}</tbody>
+    );
     diaryLayouts.push(layout);
   });
 

@@ -120,8 +120,10 @@ const Rotate = styled.span`
     transform-origin: center;
     transition: ease all 750ms;
     position: absolute;
-    padding-right: 4rem;
-    margin-top: 3.5rem;
+    top: 2px;
+    left: 0;
+    /* padding-right: 4rem; */
+    /* margin-top: 3.5rem; */
     -ms-transform: rotate(90deg); /* IE 9 */
     -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
     transform: rotate(90deg);
@@ -130,7 +132,7 @@ const Rotate = styled.span`
 
 const CollapseTitle = styled.span`
   ${Collapse}:hover & {
-    margin-left: 24px;
+    margin-left: 11px;
   }
 `;
 
@@ -187,6 +189,9 @@ const CollapseEntry = styled(LinkText).attrs({
 
 const CollapseEntryImageWrapper = styled.div`
   & > span img {
+    object-fit: cover;
+    opacity: 0.9;
+    border-radius: 12px;
     box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.35);
     filter: none !important;
 
@@ -297,8 +302,8 @@ function NavigationBar({ social, clickHandler, checkboxRef, detailsHandler }) {
             <CollapseEntry href={"https://niemal.github.io/portfolio#projects"}>
               <CollapseEntryImageWrapper>
                 <Image
-                  src="/blog/projects.png"
-                  alt={""}
+                  src="/blog/portfolio.png"
+                  alt={"projects icon image"}
                   height={400}
                   width={400}
                   loading={`eager`}
@@ -358,7 +363,7 @@ function NavigationBar({ social, clickHandler, checkboxRef, detailsHandler }) {
             <CollapseEntryImageWrapper>
               <Image
                 src="/blog/portfolio.png"
-                alt={""}
+                alt={"projects icon image"}
                 height={400}
                 width={400}
                 loading={`eager`}

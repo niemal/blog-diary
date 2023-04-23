@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import Button from "../Button";
 
-import uuid from "uuid";
+// import uuid from "uuid";
+import { v4 as uuid } from "uuid";
 import { animated, useTransition } from "react-spring";
 import { QUERIES } from "../constants";
 import { CollapseContext } from "../MobileIndex";
@@ -107,9 +108,9 @@ export default function Tags({ tags, callback, parallax }) {
   return (
     <>
       <DesktopTags>
-        {tags.map((tag) => (
+        {tags.map((tag, index) => (
           <TagWrapper
-            key={uuid()}
+            key={`${tag}-${index}`}
             enabled={tag[1] === "enabled"}
             onClick={() => {
               callback(tag);

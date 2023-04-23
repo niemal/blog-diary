@@ -1,5 +1,4 @@
 import Head from "next/head";
-import uuid from "uuid";
 
 function MetaHeader({
   title = "Welcome to niemalground!",

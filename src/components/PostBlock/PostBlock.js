@@ -1,5 +1,6 @@
 import Image from "next/image";
-import uuid from "uuid";
+// import uuid from "uuid";
+import { v4 as uuid } from "uuid";
 import styled from "styled-components";
 import { animated, useTransition } from "react-spring";
 import { QUERIES } from "../constants";
@@ -12,8 +13,7 @@ const Wrapper = styled.div`
   gap: 12px;
   border: 4px solid var(--color-primary);
   border-radius: 8px;
-  background: var(--color-gray-800);
-  box-shadow: 2px 6px 6px var(--color-gray-900);
+  background: var(--color-secondary);
   position: relative;
   opacity: 1;
   transition: all 200ms;
@@ -46,22 +46,16 @@ const Title = styled.h1`
   }
 `;
 
-const BannerWrapper = styled.div`
+const Banner = styled.img`
   width: 100%;
   height: 20vh;
+  object-fit: cover;
   border: 8px solid var(--color-info);
   border-radius: 8px;
   transition: border-color 250ms ease-in-out;
-  overflow: hidden;
 
-  & > span img {
-    transition: transform 150ms ease-in-out;
-    object-fit: cover;
-    width: 100% !important;
-    height: 100% !important;
-  }
-  ${Wrapper}:hover & > span img {
-    transform: scale(1.2);
+  ${Wrapper}:hover & {
+    border-color: var(--color-text);
   }
 
   @media ${QUERIES.laptopAndSmaller} {
@@ -88,7 +82,6 @@ const PostDate = styled.div`
 
 const PostDesc = styled.div`
   color: var(--color-text);
-  transition: color 250ms ease-in-out;
   font-weight: var(--font-weight-light);
   line-height: 1.3;
 
@@ -96,10 +89,6 @@ const PostDesc = styled.div`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-
-  ${Wrapper}:hover & {
-    color: var(--color-tertiary);
-  }
 `;
 
 const TagsWrapper = styled.div`
@@ -152,18 +141,7 @@ function PostBlock({ post }) {
           <Wrapper>
             <Title>{post.title}</Title>
 
-            {post.banner.length > 0 ? (
-              <BannerWrapper>
-                <Image
-                  src={post.banner}
-                  width={800}
-                  height={600}
-                  loading={`eager`}
-                />
-              </BannerWrapper>
-            ) : (
-              ""
-            )}
+            {post.banner.length > 0 ? <Banner src={post.banner} /> : ""}
 
             <PostDate>
               <Image src="/blog/clock.svg" alt={""} width={20} height={18} />
